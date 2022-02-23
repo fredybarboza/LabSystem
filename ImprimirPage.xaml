@@ -1,0 +1,35 @@
+﻿<Window x:Class="LaboratorioBogado.ImprimirPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LaboratorioBogado"
+        mc:Ignorable="d"
+        Title="ImprimirPage" Height="772.8" Width="800">
+    <Grid x:Name="mainGrid" Margin="0,0,2,0">
+        <Grid x:Name="impresionGeneralGrid" HorizontalAlignment="Left" Height="710" Margin="49,22,0,0" VerticalAlignment="Top" Width="579">
+            <DataGrid x:Name="imprimirDataGrid" HorizontalAlignment="Left" Height="537" Margin="49,163,0,0" VerticalAlignment="Top" Width="471" BorderBrush="{x:Null}" Background="{x:Null}" GridLinesVisibility="Horizontal" HeadersVisibility="None" OpacityMask="Black" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserResizeColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="150" x:Name="param" Binding="{Binding Parametro}" IsReadOnly="True"/>
+                    <DataGridTextColumn Width="100" Binding="{Binding Valor}" IsReadOnly="True"/>
+                    <DataGridTextColumn Width="100" Binding="{Binding Unidad}" IsReadOnly="True"/>
+                    <DataGridTextColumn Width="200" Binding="{Binding ValorReferencia}" IsReadOnly="True"/>
+                </DataGrid.Columns>
+                
+            </DataGrid>
+            <Label Content="LABORATORIO" HorizontalAlignment="Left" Margin="213,49,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+            <Label Content="HOSPITAL DISTRITAL DE CORONEL BOGADO" HorizontalAlignment="Left" Margin="49,10,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold"/>
+            <Label Content="Paciente:" HorizontalAlignment="Left" Margin="49,89,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <Label Content="C.I:" HorizontalAlignment="Left" Margin="49,115,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <Label Content="Edad:" HorizontalAlignment="Left" Margin="213,115,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <Label Content="Fecha:" HorizontalAlignment="Left" Margin="366,115,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <Label Content="Servicio:" HorizontalAlignment="Left" Margin="366,89,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <Separator HorizontalAlignment="Left" Height="26" Margin="0,132,0,0" VerticalAlignment="Top" Width="579"/>
+        </Grid>
+        <Button x:Name="imprimirButton" Content="Imprimir" HorizontalAlignment="Left" Margin="688,22,0,0" VerticalAlignment="Top" Width="75" Click="ImprimirButton_Click"/>
+    </Grid>
+
+
+
+
+</Window>

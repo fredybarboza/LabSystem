@@ -22,7 +22,7 @@ namespace LaboratorioBogado.Utils
             csb.Database = "laboratoriobogado";
             csb.UserID = "root";
             csb.Password = "5128575282828";
-
+            csb.Pooling = false;
         }
 
         public long ExecuteSQL(string sql)
@@ -37,11 +37,12 @@ namespace LaboratorioBogado.Utils
                 cmd.CommandText = sql;
                 con.Open();
                 cmd.ExecuteNonQuery();
+                cmd.CommandTimeout = 0;
                 lastId = cmd.LastInsertedId;
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show(ex.Message, "ERROR");
+                System.Windows.MessageBox.Show(ex.Message, "MI ERROR 5");
             }
             finally
             {
@@ -59,6 +60,7 @@ namespace LaboratorioBogado.Utils
             {
                 MySqlCommand cmd = con.CreateCommand();
                 cmd.CommandText = sql;
+                cmd.CommandTimeout = 0;
                 con.Open();
 
                 mysqlDataReader = cmd.ExecuteReader();
@@ -67,11 +69,12 @@ namespace LaboratorioBogado.Utils
             }
             catch (SystemException ex)
             {
-                System.Windows.MessageBox.Show(ex.Message, "Error");
+                //con.Close();
+                System.Windows.MessageBox.Show(ex.Message, "Mi Error 6");
             }
             finally
             {
-                // con.Close();
+                
             }
 
 

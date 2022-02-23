@@ -20,3 +20,9 @@ C:\Users\user\Desktop\LaboratorioBogado\bin\Debug\Ubiety.Dns.Core.dll
 C:\Users\user\Desktop\LaboratorioBogado\bin\Debug\Renci.SshNet.dll
 C:\Users\user\Desktop\LaboratorioBogado\bin\Debug\MySql.Data.xml
 C:\Users\user\Desktop\LaboratorioBogado\obj\Debug\LaboratorioBogado.csproj.CopyComplete
+C:\Users\user\Desktop\LaboratorioBogado\obj\Debug\DetallePage.g.cs
+C:\Users\user\Desktop\LaboratorioBogado\obj\Debug\DetallePage.baml
+C:\Users\user\Desktop\LaboratorioBogado\obj\Debug\CargarPage.g.cs
+C:\Users\user\Desktop\LaboratorioBogado\obj\Debug\CargarPage.baml
+C:\Users\user\Desktop\LaboratorioBogado\obj\Debug\ImprimirPage.g.cs
+C:\Users\user\Desktop\LaboratorioBogado\obj\Debug\ImprimirPage.baml
