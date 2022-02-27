@@ -38,6 +38,7 @@ namespace LaboratorioBogado
 
             estadoHemogramaTextBox.IsReadOnly = true;
 
+            inicializarButtons();
 
 
         }
@@ -63,28 +64,11 @@ namespace LaboratorioBogado
                 grid4.Visibility = Visibility.Collapsed;
 
                 //HEMOGRAMA
-                ActivarDesactivarHemoglobina(true, 0.3);
-                ActivarDesactivarHematocrito(true, 0.3);
-                ActivarDesactivarGR(true, 0.3);
-                ActivarDesactivarGB(true, 0.3);
-                ActivarDesactivarPlaquetas(true, 0.3);
-                ActivarDesactivarEritro(true, 0.3);
-                ActivarDesactivarNeutrofilos(true, 0.3);
-                ActivarDesactivarLinfocitos(true, 0.3);
-                ActivarDesactivarMonocitos(true, 0.3);
-                ActivarDesactivarEosinofilos(true, 0.3);
-                ActivarDesactivarBasofilos(true, 0.3);
+                activarDesactivarHemograma();
+
                 //SANGRE
-                ActivarDesactivarGlicemia(true, 0.3);
-                ActivarDesactivarUrea(true, 0.3);
-                ActivarDesactivarAcidoUrico(true, 0.3);
-                ActivarDesactivarColesterol(true, 0.3);
-                ActivarDesactivarTrigliceridos(true, 0.3);
-                ActivarDesactivarCreatinina(true, 0.3);
-                ActivarDesactivarGOT(true, 0.3);
-                ActivarDesactivarGPT(true, 0.3);
-                ActivarDesactivarFosfatasa(true, 0.3);
-                ActivarDesactivarAmilasa(true, 0.3);
+                activarDesactivarQuimica();
+               
 
             }
             else
@@ -127,32 +111,119 @@ namespace LaboratorioBogado
             return id_grupo;
         }
 
+        //VALIDAR BUTTON
+        private void ValidarButton_Click(object sender, RoutedEventArgs e)
+        {
+            //hemograma
+            if (tabItem1.IsSelected == true)
+            {
+                bool n = validateHemograma();
+                if (n == true)
+                {
+                    estadoHemogramaTextBox.Text = "VALIDADO";
+                    editarButton.IsEnabled = false;
+                    guardarButton.IsEnabled = false;
+                    validarButton.IsEnabled = false;
+                    imprimirButton.IsEnabled = true;
+                    MessageBox.Show("VALIDADO");
+                }
+                else
+                {
+                    MessageBox.Show("Complete todos los campos", "ERROR DE VALIDACION", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+
+        }
+
+        //editar button
+        private void EditarButton_Click(object sender, RoutedEventArgs e)
+        {
+            validarButton.IsEnabled = false;
+            imprimirButton.IsEnabled = false;
+            editarButton.IsEnabled = false;
+            guardarButton.IsEnabled = true;
+            if (tabItem1.IsSelected == true)
+            {
+                estadoHemogramaTextBox.Text = "EDITANDO";
+                controlTextBoxHemograma(false);
+            }
+
+            if (tabItem2.IsSelected == true)
+            {
+                estadoQuimicaTextBox.Text = "EDITANDO";
+            }
+
+        }
 
         //GUARDAR BUTTON
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
         {
-            guardarHemograma();
-            guardarQuimica();
+            editarButton.IsEnabled = true;
+            validarButton.IsEnabled = true;
+            imprimirButton.IsEnabled = false;
+            guardarButton.IsEnabled = false;
+            if (tabItem1.IsSelected == true)
+            {
+                guardarHemograma();
+            }
+
+            if (tabItem2.IsSelected == true)
+            {
+
+            }
+
+        }
+
+        private void EstudiosTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            controlButtons(true);
+
+            if (tabItem1.IsSelected)
+            {
+                checkStatus(estadoHemogramaTextBox.Text);
+            }
+
+            if (tabItem2.IsSelected)
+            {
+                checkStatus(estadoQuimicaTextBox.Text);
+            }
         }
 
 
+        private void checkStatus(string s)
+        {
+            switch (s)
+            {
+                case "GUARDADO": guardarButton.IsEnabled = false; imprimirButton.IsEnabled = false; break;
+                case "EDITANDO": validarButton.IsEnabled = false; guardarButton.IsEnabled = true; editarButton.IsEnabled = false; imprimirButton.IsEnabled = false; break;
+                case "VALIDADO": guardarButton.IsEnabled = false; editarButton.IsEnabled = false; validarButton.IsEnabled = false; imprimirButton.IsEnabled = true; break;
+                case "SIN GUARDAR": imprimirButton.IsEnabled = false; editarButton.IsEnabled = false; validarButton.IsEnabled = false; break;
+            }
+        }
+
+
+        private void inicializarButtons()
+        {
+            if (tabItem1.IsSelected == true)
+            {
+                checkStatus(estadoHemogramaTextBox.Text);
+            }
+
+            if (tabItem2.IsSelected == true)
+            {
+                checkStatus(estadoQuimicaTextBox.Text);
+            }
+        }
+
+        private void controlButtons(bool a)
+        {
+            guardarButton.IsEnabled = a;
+            editarButton.IsEnabled = a;
+            validarButton.IsEnabled = a;
+            imprimirButton.IsEnabled = a;
+        }
 
         /*--------METODOS Y EVENTOS PARA EL PANEL HEMOGRAMA-------*/
-
-        //validar hemograma button
-        private void ValidarHemogramaButton_Click(object sender, RoutedEventArgs e)
-        {
-            bool n = validateHemograma();
-            if (n==true)
-            {
-                MessageBox.Show("VALIDADO");
-            }
-            else
-            {
-                MessageBox.Show("Complete todos los campos", "ERROR DE VALIDACION", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-
-        }
 
         //validacion hemograma
         private bool validateHemograma()
@@ -197,7 +268,7 @@ namespace LaboratorioBogado
                 basTextBox.Text = reade.GetValue(11).ToString();
                 observacionTextBox.Text = reade.GetValue(12).ToString();
 
-                guardarHemogramaButton.IsEnabled = false;
+
 
                 controlTextBoxHemograma(true);
 
@@ -208,29 +279,25 @@ namespace LaboratorioBogado
             if (c == 0)
             {
                 estadoHemogramaTextBox.Text = "SIN GUARDAR";
-                imprimirHemogramaButton.IsEnabled = false;
-                validarHemogramaButton.IsEnabled = false;
-                editarHemogramaButton.IsEnabled = false;
             }
 
         }
         //metodo para activar o desactivar textbox hemograma
         private void controlTextBoxHemograma(bool a)
         {
-            if (hemoglobinaTextBox.Text != "") { hemoglobinaTextBox.IsReadOnly = a; } else { if (hemoglobinaTextBox.Opacity == 1.0) { hemoglobinaTextBox.IsReadOnly = a; } }
-            if (hematocritoTextBox.Text != "") { hematocritoTextBox.IsReadOnly = a; } else { if (hematocritoTextBox.Opacity == 1.0) { hematocritoTextBox.IsReadOnly = a; } }
-            if (grTextBox.Text != "") { grTextBox.IsReadOnly = a; } else { if (grTextBox.Opacity == 1.0) { grTextBox.IsReadOnly = a; } }
-            if (gbTextBox.Text != "") { gbTextBox.IsReadOnly = a; } else { if (gbTextBox.Opacity == 1.0) { gbTextBox.IsReadOnly = a; } }
-            if (plaquetasTextBox.Text != "") { plaquetasTextBox.IsReadOnly = a; } else { if (plaquetasTextBox.Opacity == 1.0) { plaquetasTextBox.IsReadOnly = a; } }
-            if (h1TextBox.Text != "") { h1TextBox.IsReadOnly = a; } else { if (h1TextBox.Opacity == 1.0) { h1TextBox.IsReadOnly = a; } }
-            if (h2TextBox.Text != "") { h2TextBox.IsReadOnly = a; } else { if (h2TextBox.Opacity == 1.0) { h2TextBox.IsReadOnly = a; } }
-            if (neuTextBox.Text != "") { neuTextBox.IsReadOnly = a; } else { if (neuTextBox.Opacity == 1.0) { neuTextBox.IsReadOnly = a; } }
-            if (linTextBox.Text != "") { linTextBox.IsReadOnly = a; } else { if (linTextBox.Opacity == 1.0) { linTextBox.IsReadOnly = a; } }
-            if (monoTextBox.Text != "") { monoTextBox.IsReadOnly = a; } else { if (monoTextBox.Opacity == 1.0) { monoTextBox.IsReadOnly = a; } }
-            if (eoTextBox.Text != "") { eoTextBox.IsReadOnly = a; } else { if (eoTextBox.Opacity == 1.0) { eoTextBox.IsReadOnly = a; } }
-            if (basTextBox.Text != "") { basTextBox.IsReadOnly = a; } else { if (basTextBox.Opacity == 1.0) { basTextBox.IsReadOnly = a; } }
-            if (observacionTextBox.Text != "") { observacionTextBox.IsReadOnly = a; } else { if (observacionTextBox.Opacity == 1.0) { observacionTextBox.IsReadOnly = a; } }
-
+            if (hemoglobinaTextBox.Opacity==1.0){ hemoglobinaTextBox.IsReadOnly = a; }
+            if (hematocritoTextBox.Opacity == 1.0) { hematocritoTextBox.IsReadOnly = a; }
+            if (grTextBox.Opacity == 1.0) { grTextBox.IsReadOnly = a; }
+            if (gbTextBox.Opacity == 1.0) { gbTextBox.IsReadOnly = a; }
+            if (plaquetasTextBox.Opacity == 1.0) { plaquetasTextBox.IsReadOnly = a; }
+            if (h1TextBox.Opacity == 1.0) { h1TextBox.IsReadOnly = a; }
+            if (h2TextBox.Opacity == 1.0) { h2TextBox.IsReadOnly = a; }
+            if (neuTextBox.Opacity == 1.0) { neuTextBox.IsReadOnly = a; }
+            if (linTextBox.Opacity == 1.0) { linTextBox.IsReadOnly = a; }
+            if (monoTextBox.Opacity == 1.0) { monoTextBox.IsReadOnly = a; }
+            if (eoTextBox.Opacity == 1.0) { eoTextBox.IsReadOnly = a; }
+            if (basTextBox.Opacity == 1.0) { basTextBox.IsReadOnly = a; }
+            if (observacionTextBox.Opacity == 1.0) { observacionTextBox.IsReadOnly = a; }
         }
 
         //activa o desactiva la carga de datos según la selección
@@ -238,6 +305,7 @@ namespace LaboratorioBogado
         {
             tabItem1.Visibility = Visibility.Visible;
             grid1.Visibility = Visibility.Visible;
+            tabItem1.IsSelected = true;
             visibilityEstudios(true);
 
             switch (id_analisis)
@@ -275,10 +343,6 @@ namespace LaboratorioBogado
                     conDB.ExecuteSQL(sql);
                     estadoHemogramaTextBox.Text = "GUARDADO";
                     initDateHemograma(pedido);
-                    guardarHemogramaButton.IsEnabled = false;
-                    imprimirHemogramaButton.IsEnabled = true;
-                    editarHemogramaButton.IsEnabled = true;
-                    validarHemogramaButton.IsEnabled = true;
                 }
                 else//editar
                 {
@@ -287,39 +351,13 @@ namespace LaboratorioBogado
                     conDB.ExecuteSQL(sql);
 
                     estadoHemogramaTextBox.Text = "GUARDADO";
-                    guardarHemogramaButton.IsEnabled = false;
-                    imprimirHemogramaButton.IsEnabled = true;
-                    editarHemogramaButton.IsEnabled = true;
-                    validarHemogramaButton.IsEnabled = true;
+
                     initDateHemograma(pedido);
                 }
             }
         }
 
-        
 
-        //guardar hemograma button
-        private void GuardarHemograma_Click(object sender, RoutedEventArgs e)
-        {
-            guardarHemograma();
-        }
-
-        //editar hemograma button
-        private void EditarHemogramaButton_Click(object sender, RoutedEventArgs e)
-        {
-            controlButtonsHemograma(false);
-            controlTextBoxHemograma(false);
-            guardarHemogramaButton.IsEnabled = true;
-            estadoHemogramaTextBox.Text = "EDITANDO..";
-        }
-
-        private void controlButtonsHemograma(bool a)
-        {
-            guardarHemogramaButton.IsEnabled = a;
-            editarHemogramaButton.IsEnabled = a;
-            imprimirHemogramaButton.IsEnabled = a;
-            validarHemogramaButton.IsEnabled = a;
-        }
 
         /*--------FIN METODOS Y EVENTOS PARA EL PANEL HEMOGRAMA-------*/
 
@@ -332,6 +370,7 @@ namespace LaboratorioBogado
         {
             tabItem2.Visibility = Visibility.Visible;
             grid2.Visibility = Visibility.Visible;
+            tabItem2.IsSelected = true;
             visibilityEstudios(true);
             switch (id_analisis)
             {
@@ -365,6 +404,35 @@ namespace LaboratorioBogado
 
 
         /*----METODOS Y EVENTOS REPETITIVOS-----------*/
+
+        private void activarDesactivarHemograma()
+        {
+            ActivarDesactivarHemoglobina(true, 0.3);
+            ActivarDesactivarHematocrito(true, 0.3);
+            ActivarDesactivarGR(true, 0.3);
+            ActivarDesactivarGB(true, 0.3);
+            ActivarDesactivarPlaquetas(true, 0.3);
+            ActivarDesactivarEritro(true, 0.3);
+            ActivarDesactivarNeutrofilos(true, 0.3);
+            ActivarDesactivarLinfocitos(true, 0.3);
+            ActivarDesactivarMonocitos(true, 0.3);
+            ActivarDesactivarEosinofilos(true, 0.3);
+            ActivarDesactivarBasofilos(true, 0.3);
+        }
+
+        private void activarDesactivarQuimica()
+        {
+            ActivarDesactivarGlicemia(true, 0.3);
+            ActivarDesactivarUrea(true, 0.3);
+            ActivarDesactivarAcidoUrico(true, 0.3);
+            ActivarDesactivarColesterol(true, 0.3);
+            ActivarDesactivarTrigliceridos(true, 0.3);
+            ActivarDesactivarCreatinina(true, 0.3);
+            ActivarDesactivarGOT(true, 0.3);
+            ActivarDesactivarGPT(true, 0.3);
+            ActivarDesactivarFosfatasa(true, 0.3);
+            ActivarDesactivarAmilasa(true, 0.3);
+        }
 
         /*FUNCIONES PARA HABILITAR Y DESHABILITAR LAS OPCIONES INDIVIDUALES*/
 
@@ -546,8 +614,6 @@ namespace LaboratorioBogado
             amilasaLabel.Opacity = b;
             u22.Opacity = b;
         }
-
-        
 
         /*---FIN METODOS Y EVENTOS REPETITIVOS--------*/
 

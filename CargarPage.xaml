@@ -12,8 +12,8 @@
             <ColumnDefinition Width="256*"/>
             <ColumnDefinition Width="139*"/>
         </Grid.ColumnDefinitions>
-        <TabControl x:Name="estudiosTabControl" HorizontalAlignment="Left" Height="756" VerticalAlignment="Top" Width="734" Background="{x:Null}" Grid.ColumnSpan="2">
-            <TabItem x:Name="tabItem1" Header="HEMOGRAMA">
+        <TabControl x:Name="estudiosTabControl" HorizontalAlignment="Left" Height="756" VerticalAlignment="Top" Width="734" Background="{x:Null}" Grid.ColumnSpan="2" SelectionChanged="EstudiosTabControl_SelectionChanged">
+            <TabItem x:Name="tabItem1" TabIndex="1" Header="HEMOGRAMA">
                 <Grid x:Name="grid1" Margin="0,0,-2,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="632*"/>
@@ -63,23 +63,19 @@
                     <Label x:Name="vr3" Content="4.000.000 - 5.500.000 mm³" HorizontalAlignment="Left" Margin="502,115,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="30" Width="206" FontSize="14"/>
                     <Label x:Name="vr4" Content="4.000 - 10.000 mm³" HorizontalAlignment="Left" Margin="502,152,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="30" Width="216" FontSize="14"/>
                     <Label x:Name="vr5" Content="150.000 - 400.000 mm³" HorizontalAlignment="Left" Margin="502,189,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="30" Width="216" FontSize="14"/>
-                    <Label Content="VALORES DE REFERENCIA - TEXTO DE PRUEBA" HorizontalAlignment="Left" Margin="420,327,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="30" Width="340" FontSize="14"/>
-                    <Label Content="VALORES DE REFERENCIA - TEXTO DE PRUEBA" HorizontalAlignment="Left" Margin="420,362,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="30" Width="340" FontSize="14"/>
-                    <Label Content="VALORES DE REFERENCIA - TEXTO DE PRUEBA" HorizontalAlignment="Left" Margin="420,401,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="30" Width="340" FontSize="14"/>
-                    <Label Content="VALORES DE REFERENCIA - TEXTO DE PRUEBA" HorizontalAlignment="Left" Margin="420,436,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="30" Width="340" FontSize="14"/>
-                    <Label Content="VALORES DE REFERENCIA - TEXTO DE PRUEBA" HorizontalAlignment="Left" Margin="420,475,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="30" Width="340" FontSize="14"/>
+                    <Label Content="VALORES DE REFERENCIA - TEXTO DE PRUEBA" HorizontalAlignment="Left" Margin="420,327,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="30" Width="310" FontSize="14"/>
+                    <Label Content="VALORES DE REFERENCIA - TEXTO DE PRUEBA" HorizontalAlignment="Left" Margin="420,362,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="30" Width="310" FontSize="14"/>
+                    <Label Content="VALORES DE REFERENCIA - TEXTO DE PRUEBA" HorizontalAlignment="Left" Margin="420,401,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="30" Width="310" FontSize="14"/>
+                    <Label Content="VALORES DE REFERENCIA - TEXTO DE PRUEBA" HorizontalAlignment="Left" Margin="420,436,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="30" Width="310" FontSize="14"/>
+                    <Label Content="VALORES DE REFERENCIA - TEXTO DE PRUEBA" HorizontalAlignment="Left" Margin="420,475,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="30" Width="310" FontSize="14"/>
                     <Label Content="OBSERVACIÓN" HorizontalAlignment="Left" Margin="44,510,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
                     <TextBox x:Name="observacionTextBox" HorizontalAlignment="Left" Height="72" Margin="242,510,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="318" Grid.ColumnSpan="2"/>
-                    <Button x:Name="guardarHemogramaButton" Content="GUARDAR" Grid.Column="1" HorizontalAlignment="Left" Margin="126,5,0,0" VerticalAlignment="Top" Width="75" Background="#FF7AF390" Click="GuardarHemograma_Click"/>
-                    <Button x:Name="editarHemogramaButton" Content="EDITAR" Grid.Column="1" HorizontalAlignment="Left" Margin="46,5,0,0" VerticalAlignment="Top" Width="75" Background="#FF899BEA" Click="EditarHemogramaButton_Click"/>
-                    <Button x:Name="validarHemogramaButton" Content="VALIDAR" HorizontalAlignment="Left" Margin="485,5,0,0" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2" Background="#FFF79C9C" Click="ValidarHemogramaButton_Click"/>
                     <Separator HorizontalAlignment="Left" Height="17" Margin="-10,25,0,0" VerticalAlignment="Top" Width="740" Grid.ColumnSpan="2"/>
-                    <Label Content="ESTADO" HorizontalAlignment="Left" Margin="242,2,0,0" VerticalAlignment="Top" Width="58" FontWeight="Bold" Height="23"/>
-                    <Button x:Name="imprimirHemogramaButton" Content="Imprimir" HorizontalAlignment="Left" Margin="399,5,0,0" VerticalAlignment="Top" Width="75" Background="#FFC3B9B9"/>
-                    <TextBox x:Name="estadoHemogramaTextBox" HorizontalAlignment="Left" Height="20" Margin="300,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="93" TextAlignment="Center"/>
+                    <Label Content="ESTADO" HorizontalAlignment="Left" Margin="45,2,0,0" VerticalAlignment="Top" Width="58" FontWeight="Bold" Height="23" Grid.Column="1"/>
+                    <TextBox x:Name="estadoHemogramaTextBox" HorizontalAlignment="Left" Height="20" Margin="108,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="93" TextAlignment="Center" Grid.Column="1"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="tabItem2" Header="ANALISIS DE SANGRE">
+            <TabItem x:Name="tabItem2" TabIndex="2" Header="QUIMICA">
                 <Grid x:Name="grid2" Background="#FFE5E5E5" Margin="0,0,0,2">
                     <Grid x:Name="gridQuimica" HorizontalAlignment="Left" Height="635" VerticalAlignment="Top" Width="857" Margin="0,0,-2,-12">
                         <Label x:Name="glicemiaLabel" Content="Glicemia" HorizontalAlignment="Left" Margin="22,37,0,0" VerticalAlignment="Top" FontSize="16"/>
@@ -127,6 +123,8 @@
                         <Label Content="Inferior a 120 U/L" HorizontalAlignment="Left" Margin="402,369,0,0" VerticalAlignment="Top"/>
                         <Separator HorizontalAlignment="Left" Height="14" Margin="0,25,-30,0" VerticalAlignment="Top" Width="887"/>
                     </Grid>
+                    <TextBox x:Name="estadoQuimicaTextBox" HorizontalAlignment="Left" Height="20" Margin="627,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="93" TextAlignment="Center"/>
+                    <Label Content="ESTADO" HorizontalAlignment="Left" Margin="564,2,0,0" VerticalAlignment="Top" Width="58" FontWeight="Bold" Height="23"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItem3" Header="OPCION 3 - TEXTO DE PRUEBA">
@@ -146,17 +144,26 @@
             </TabItem>
 
         </TabControl>
-        <Button x:Name="guardarButton" Content="Guardar" Grid.Column="1" HorizontalAlignment="Left" Margin="149,296,0,0" VerticalAlignment="Top" Width="75" Click="GuardarButton_Click"/>
-        <Label Content="Orden" Grid.Column="1" HorizontalAlignment="Left" Margin="90,133,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.483,0.806"/>
-        <Label Content="Paciente" Grid.Column="1" HorizontalAlignment="Left" Margin="80,45,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="152,137,0,0" TextWrapping="Wrap" Text="32" VerticalAlignment="Top" Width="60" FontSize="16" TextAlignment="Center"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="33" Margin="80,81,0,0" TextWrapping="Wrap" Text="FREDY SANTIAGO BARBOZA GARCIA" VerticalAlignment="Top" Width="245" FontSize="14" TextAlignment="Center"/>
+        <Label Content="Orden" Grid.Column="1" HorizontalAlignment="Left" Margin="80,291,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.483,0.806"/>
+        <Label Content="Paciente" Grid.Column="1" HorizontalAlignment="Left" Margin="80,222,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.507,1.161"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="152,296,0,0" TextWrapping="Wrap" Text="32" VerticalAlignment="Top" Width="60" FontSize="16" TextAlignment="Center"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="33" Margin="80,253,0,0" TextWrapping="Wrap" Text="FREDY SANTIAGO BARBOZA GARCIA" VerticalAlignment="Top" Width="245" FontSize="14" TextAlignment="Center"/>
         <Button Content="VALIDAR TODO" Grid.Column="1" HorizontalAlignment="Left" Margin="110,612,0,0" VerticalAlignment="Top" Width="95" Height="31"/>
         <Button Content="GUARDAR TODO" Grid.Column="1" HorizontalAlignment="Left" Margin="225,612,0,0" VerticalAlignment="Top" Width="100" Height="31"/>
-        <Label Content="Edad" Grid.Column="1" HorizontalAlignment="Left" Margin="90,214,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="152,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Text="100" FontSize="16" TextAlignment="Center" IsReadOnly="True" Background="#FFF17373" FontWeight="Bold"/>
-        <Label Content="Sexo" Grid.Column="1" HorizontalAlignment="Left" Margin="90,169,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="152,173,0,0" TextWrapping="Wrap" Text="M" VerticalAlignment="Top" Width="60" FontSize="16" TextAlignment="Center" IsReadOnly="True"/>
+        <Label Content="Edad" Grid.Column="1" HorizontalAlignment="Left" Margin="80,373,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="152,382,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Text="100" FontSize="16" TextAlignment="Center" IsReadOnly="True" Background="#FFF17373" FontWeight="Bold"/>
+        <Label Content="Sexo" Grid.Column="1" HorizontalAlignment="Left" Margin="80,327,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="152,335,0,0" TextWrapping="Wrap" Text="M" VerticalAlignment="Top" Width="60" FontSize="16" TextAlignment="Center" IsReadOnly="True"/>
+        <Border BorderBrush="#FFC1BCBC" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Height="159" Margin="72,21,0,0" VerticalAlignment="Top" Width="106" RenderTransformOrigin="0,1">
+            <Grid>
+                <Button x:Name="guardarButton" Content="GUARDAR" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Background="#FF7AF390" Click="GuardarButton_Click" RenderTransformOrigin="0.92,0.65"/>
+                <Button x:Name="editarButton" Content="EDITAR" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="75" Background="#FF899BEA" Click="EditarButton_Click"/>
+                <Button x:Name="validarButton" Content="VALIDAR" HorizontalAlignment="Left" Margin="10,83,0,0" VerticalAlignment="Top" Width="75" Background="#FFF79C9C" Click="ValidarButton_Click"/>
+                <Button x:Name="imprimirButton" Content="Imprimir" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" Width="75" Background="#FFC3B9B9"/>
+            </Grid>
+        </Border>
+        <Separator Grid.Column="1" HorizontalAlignment="Left" Height="34" Margin="72,197,0,0" VerticalAlignment="Top" Width="288"/>
+        <Separator Grid.Column="1" HorizontalAlignment="Left" Height="34" Margin="72,409,0,0" VerticalAlignment="Top" Width="288"/>
     </Grid>
 
 </Window>

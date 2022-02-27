@@ -66,6 +66,7 @@
     <Compile Include="Estudios\Hemograma.cs" />
     <Compile Include="Estudios\Impresion.cs" />
     <Compile Include="Estudios\Pedido.cs" />
+    <Compile Include="Estudios\ServicioEnum.cs" />
     <Compile Include="Estudios\Servicios.cs" />
     <Compile Include="ImprimirPage.xaml.cs">
       <DependentUpon>ImprimirPage.xaml</DependentUpon>
