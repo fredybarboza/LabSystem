@@ -223,6 +223,8 @@ namespace LaboratorioBogado
             imprimirButton.IsEnabled = a;
         }
 
+        
+
         /*--------METODOS Y EVENTOS PARA EL PANEL HEMOGRAMA-------*/
 
         //validacion hemograma

@@ -27,6 +27,11 @@ namespace LaboratorioBogado
     {
         ConnectionDB conDB = new ConnectionDB();
         ObservableCollection<DetallePedido> ListaDetallePedido = new ObservableCollection<DetallePedido>();
+        ObservableCollection<Servicios> ListaServicios = new ObservableCollection<Servicios>();
+        ObservableCollection<Servicios> ls2 = new ObservableCollection<Servicios>();
+        ObservableCollection<Analisis> ListaEstudios = new ObservableCollection<Analisis>();
+
+
 
 
         public MainWindow()
@@ -38,12 +43,24 @@ namespace LaboratorioBogado
         void InitData()
         {
             //INIT COMBO BOX SERVICIOS
-            readServicios();
-            servicioComboBox.ItemsSource = Enum.GetValues(typeof(ServiciosEnum)).Cast<ServiciosEnum>();
+            readServicios(false);
+            servicioComboBox.ItemsSource = ListaServicios;
+            servicioComboBox.DisplayMemberPath = "Nombre";
+            servicioComboBox.SelectedValuePath = "Id";
 
+            readServicios(true);
+            filtrarServicioComboBox.ItemsSource = ls2;
+            filtrarServicioComboBox.DisplayMemberPath = "Nombre";
+            filtrarServicioComboBox.SelectedValuePath = "Id";
+
+            readEstudios();
+            filtrarEstudioComboBox.ItemsSource = ListaEstudios;
+            filtrarEstudioComboBox.DisplayMemberPath = "Nombre";
+            filtrarEstudioComboBox.SelectedValuePath = "Id";
 
 
             FechaActualLabel.Content = DateTime.Now.ToString("dd-MM-yyyy");
+            fechaPedidosTextBox.Text = DateTime.Now.ToString("dd-MM-yyyy");
 
             edadTextBox.IsReadOnly = false;
 
@@ -73,6 +90,8 @@ namespace LaboratorioBogado
 
             readOrden();
 
+           
+
         }
 
         //READ N° ORDEN
@@ -87,13 +106,44 @@ namespace LaboratorioBogado
         }
 
         //READ SERVICIOS
-        private void readServicios()
+        private void readServicios(bool a)
         {
+          string[] serv = new string[10] { "TODOS", "Externo", "Int. Adulto", "Adulto", "Int. Pediatrico", "Urg. Pediatria", "Urg. Polivalente", "Urg. Respiratoria", "Int. Respiratorio", "Urgencia" };
 
-          
+            if (a==false) {
+                for (int i = 1; i < 10; i++)
+                {
+                    Servicios s = new Servicios();
+                    s.Id = i.ToString();
+                    s.Nombre = serv[i];
+                    ListaServicios.Add(s);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    Servicios s = new Servicios();
+                    s.Id = i.ToString();
+                    s.Nombre = serv[i];
+                    ls2.Add(s);
+                }
+            }
         }
 
-       
+        private void readEstudios()
+        {
+            string[] estudios = new string[3] { "TODOS", "Hemograma", "Quimica" };
+            for (int i = 0; i < 3; i++)
+            {
+                Analisis a = new Analisis();
+                a.Id = i.ToString();
+                a.Nombre = estudios[i];
+                ListaEstudios.Add(a);
+            }
+
+        }
+
 
 
         //FUNCION PARA MARCAR-DESMARCAR SUBOPCIONES DEL HEMOGRAMA
@@ -789,7 +839,42 @@ namespace LaboratorioBogado
             removeDetalle("21");
         }
 
-        
+        private void FiltrarButton_Click(object sender, RoutedEventArgs e)
+        {
+            int codigo = 0;
+            if (filtrarServicioComboBox.SelectedValue!=null)
+            {
+                if (filtrarServicioComboBox.SelectedValue.ToString() != "0") { codigo = 7; }
+            }
+
+            if (filtrarEstudioComboBox.SelectedValue != null)
+            {
+                if (filtrarEstudioComboBox.SelectedValue.ToString() != "0") {  codigo = codigo + 2;}
+            }
+
+            if (filtrarFechaDatePecker.SelectedDate!=null){ codigo = codigo + 3;}
+
+            switch (codigo)
+            {
+                case 0: MessageBox.Show("SELECCIONE ALGUN PARAMETRO DE FILTRO"); break;
+                case 7: MessageBox.Show("FILTRAR POR SERVICIO"); break;
+                case 2: MySqlDataReader reade = conDB.ListSql("select id from pedidos where fecha='" + fechaPedidosTextBox.Text + "' inner join  ");
+                    while (reade.Read())
+                    {
+                        MessageBox.Show(reade.GetValue(0).ToString());
+                    }
+
+                    ; break;
+                case 3: MessageBox.Show("FILTRAR POR FECHA"); break;
+                case 9: MessageBox.Show("FILTRAR POR SERVICIO + ESTUDIO"); break;
+                case 10: MessageBox.Show("FILTRAR POR SERVICIO + FECHA"); break;
+                case 5: MessageBox.Show("FILTRAR POR ESTUDIO + FECHA"); break;
+                case 12: MessageBox.Show("FILTRAR POR SERVICIO + ESTUDIO + FECHA"); break;
+            }
+
+        }
+
+
 
         /*---------------------------------------------------------*/
 

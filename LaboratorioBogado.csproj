@@ -63,6 +63,7 @@
       <DependentUpon>DetallePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Estudios\DetallePedido.cs" />
+    <Compile Include="Estudios\Analisis.cs" />
     <Compile Include="Estudios\Hemograma.cs" />
     <Compile Include="Estudios\Impresion.cs" />
     <Compile Include="Estudios\Pedido.cs" />
