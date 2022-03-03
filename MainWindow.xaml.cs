@@ -88,9 +88,14 @@ namespace LaboratorioBogado
             //PEDIDOS
             pedidosDataGrid.SelectedValuePath = "Id";
 
-            readOrden();
+            
 
-           
+            resultadosCheckBox.IsEnabled = false;
+
+            ordenLabel.Opacity = 0.3;
+            ordenTextBox.IsEnabled = false;
+            servicioLabel.Opacity = 0.3;
+            servicioComboBox.IsEnabled = false;
 
         }
 
@@ -228,6 +233,7 @@ namespace LaboratorioBogado
                         if (masculinoRadioButton.IsChecked == true || femeninoRadioButton.IsChecked == true) {
                             sql = "INSERT INTO `pacientes` (`ci`,`nombre`, `apellido`,`fecha_nacimiento`, `edad`, `sexo`) VALUES ('" + ciTextBox.Text + "','" + nombreTextBox.Text + "', '" + apellidoTextBox.Text + "', '" + fechaNacDatePicker.SelectedDate.ToString() + "', '" + edadTextBox.Text + "', '" + s + "')";
                             conDB.ExecuteSQL(sql);
+                        clearInput();
                         }
                     }
                     else
@@ -270,7 +276,8 @@ namespace LaboratorioBogado
         {
             string sql = "";
             sql = "INSERT INTO `pedidos` (`orden`, `fecha`, `id_paciente`, `servicio`) VALUES ('" + ordenTextBox.Text + "', '" + FechaActualLabel.Content + "', '" + ciTextBox.Text + "', '" + servicioComboBox.SelectedValue + "')";
-            conDB.ExecuteSQL(sql);  
+            conDB.ExecuteSQL(sql);
+            clearInput();
         }
 
         //GUARDAR BUTTON
@@ -278,6 +285,9 @@ namespace LaboratorioBogado
         {
             guardarPaciente();
             guardarPedido();
+            ciTextBox.Text = "";
+            resultadosCheckBox.IsEnabled = false;
+            resultadosCheckBox.IsChecked = false;
             string id_ultimo_pedido = obtenerUltimoPedido();
             guardarDetallePedido(id_ultimo_pedido);
             getPedidos();
@@ -338,6 +348,7 @@ namespace LaboratorioBogado
         //BUSCAR BUTTON
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            resultadosCheckBox.IsEnabled = true;
             resultadosCheckBox.IsChecked = false;
             string ci = ciTextBox.Text;
             int c = 0;
@@ -353,9 +364,13 @@ namespace LaboratorioBogado
                 if (s == "M"){ masculinoRadioButton.IsChecked = true;} else { femeninoRadioButton.IsChecked = true; }
 
                 c = 1;
+                if (resultadosCheckBox.IsChecked==true)
+                {
+                    guardarButton.IsEnabled = true;
+                }
             }
 
-            if (c == 1){ activarDesactivarDatos(true, 1.0);} else { clearInput(); activarDesactivarDatos(false, 1.0);}      
+            if (c == 1){ activarDesactivarDatos(true, 1.0);} else { clearInput(); activarDesactivarDatos(false, 1.0); guardarButton.IsEnabled = true; }      
             
         }
     
@@ -363,7 +378,14 @@ namespace LaboratorioBogado
         private void CheckBox_Checked_1(object sender, RoutedEventArgs e)
         {
             hemogramaGroupBox.Visibility = Visibility.Visible;
-            sangreGroupBox.Visibility = Visibility.Visible; 
+            sangreGroupBox.Visibility = Visibility.Visible;
+            ordenLabel.Opacity = 1.0;
+            ordenTextBox.IsEnabled = true;
+            servicioLabel.Opacity = 1.0;
+            servicioComboBox.IsEnabled = true;
+            if (ciTextBox.Text!="") {
+                guardarButton.IsEnabled = true;
+            }
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
@@ -379,21 +401,33 @@ namespace LaboratorioBogado
 
             guardarButton.Visibility = Visibility.Visible;
 
-           
+            if (nombreTextBox.IsReadOnly==true)
+            {
+                guardarButton.IsEnabled = false;
+            }
+            ordenLabel.Opacity = 0.3;
+            ordenTextBox.IsEnabled = false;
+            servicioLabel.Opacity = 0.3;
+            servicioComboBox.IsEnabled = false;
+
         }
 
         private void CiTextBox_KeyUp(object sender, KeyEventArgs e)
         {
             if (ciTextBox.Text == "")
             {
+                resultadosCheckBox.IsEnabled = false;
+                resultadosCheckBox.IsChecked = false;
                 guardarButton.IsEnabled = false;
                 buscarButton.IsEnabled = false;
             }
             else
             {
-                guardarButton.IsEnabled = true;
                 buscarButton.IsEnabled = true;
             }
+            resultadosCheckBox.IsChecked = false;
+            resultadosCheckBox.IsEnabled = false;
+            guardarButton.IsEnabled = false;
             activarDesactivarDatos(true, 0.3);
             clearInput();
         }
@@ -505,53 +539,19 @@ namespace LaboratorioBogado
         private void getPedidos()
         {
             pedidosDataGrid.Items.Clear();
-            string fechaactual = DateTime.Now.ToString("dd-MM-yyyy");
-            
-       
-            MySqlDataReader reade = conDB.ListSql("select id, orden, id_paciente, servicio from pedidos where fecha='"+ fechaactual +"' ");
-            if (reade == null)
+            MySqlDataReader reade = conDB.ListSql("select p.id, p.orden, p.id_paciente, pac.nombre, pac.apellido, serv.nombre from pedidos as p inner join detallepedidos as dp  on p.id = dp.id_pedido inner join servicios as serv on p.servicio = serv.id inner join pacientes as pac on p.id_paciente = pac.ci inner join estudios as e on e.id = dp.id_analisis where p.fecha = '" + DateTime.Now.ToString("dd-MM-yyyy") + "' group by id; ");
+            while (reade.Read())
             {
-                MessageBox.Show("ERROR DE SOBRECARGA");
+                Pedido p = new Pedido();
+                p.Id = reade.GetValue(0).ToString();
+                p.Orden = reade.GetValue(1).ToString();
+                p.Ci = reade.GetValue(2).ToString();
+                p.Nombre = reade.GetValue(3).ToString();
+                p.Apellido = reade.GetValue(4).ToString();
+                p.Servicio = reade.GetValue(5).ToString();
+
+                pedidosDataGrid.Items.Add(p);
             }
-            else
-            {
-                while (reade.Read())
-                {
-                    Pedido p = new Pedido();
-
-                    p.Id = reade.GetValue(0).ToString();
-                    p.Orden = reade.GetValue(1).ToString();
-                    p.Ci = reade.GetValue(2).ToString();
-
-                    p.NombreApellido = getDatosPersonales(reade.GetValue(2).ToString());
-
-
-                    p.Servicio = reade.GetValue(3).ToString();
-
-                    pedidosDataGrid.Items.Add(p);
-                }
-            }
-            
-        }
-
-        private string getDatosPersonales(string ci)
-        {
-            string nombreapellido = "";
-            MySqlDataReader reade = conDB.ListSql("select nombre, apellido from pacientes where ci=" + ci);
-            if (reade==null)
-            {
-                MessageBox.Show("error en datos personales");
-            }
-            else
-            {
-                while (reade.Read())
-                {
-                    string nombre = reade.GetValue(0).ToString();
-                    string apellido = reade.GetValue(1).ToString();
-                    nombreapellido = nombre + " " + apellido;
-                } 
-            }
-            return nombreapellido;
         }
 
         private void DetalleButton_Click(object sender, RoutedEventArgs e)
@@ -852,26 +852,102 @@ namespace LaboratorioBogado
                 if (filtrarEstudioComboBox.SelectedValue.ToString() != "0") {  codigo = codigo + 2;}
             }
 
-            if (filtrarFechaDatePecker.SelectedDate!=null){ codigo = codigo + 3;}
+            if (filtrarFechaDatePecker.SelectedDate!=null){ codigo = codigo + 3; fechaPedidosTextBox.Text = Convert.ToDateTime(filtrarFechaDatePecker.SelectedDate).ToString("dd-MM-yyyy"); }
 
             switch (codigo)
             {
                 case 0: MessageBox.Show("SELECCIONE ALGUN PARAMETRO DE FILTRO"); break;
-                case 7: MessageBox.Show("FILTRAR POR SERVICIO"); break;
-                case 2: MySqlDataReader reade = conDB.ListSql("select id from pedidos where fecha='" + fechaPedidosTextBox.Text + "' inner join  ");
-                    while (reade.Read())
-                    {
-                        MessageBox.Show(reade.GetValue(0).ToString());
-                    }
-
-                    ; break;
-                case 3: MessageBox.Show("FILTRAR POR FECHA"); break;
-                case 9: MessageBox.Show("FILTRAR POR SERVICIO + ESTUDIO"); break;
-                case 10: MessageBox.Show("FILTRAR POR SERVICIO + FECHA"); break;
-                case 5: MessageBox.Show("FILTRAR POR ESTUDIO + FECHA"); break;
-                case 12: MessageBox.Show("FILTRAR POR SERVICIO + ESTUDIO + FECHA"); break;
+                case 7: filterServicios(fechaPedidosTextBox.Text); break;
+                case 2: filterEstudios(fechaPedidosTextBox.Text); break;
+                case 3: filterFecha(Convert.ToDateTime(filtrarFechaDatePecker.SelectedDate).ToString("dd-MM-yyyy")); break;
+                case 9: filterServicioEstudio(fechaPedidosTextBox.Text); break;
+                case 10: filterServicios(Convert.ToDateTime(filtrarFechaDatePecker.SelectedDate).ToString("dd-MM-yyyy")); break;
+                case 5: filterEstudios(Convert.ToDateTime(filtrarFechaDatePecker.SelectedDate).ToString("dd-MM-yyyy")); break;
+                case 12: filterServicioEstudio(Convert.ToDateTime(filtrarFechaDatePecker.SelectedDate).ToString("dd-MM-yyyy")); break;
             }
 
+        }
+
+        private void filterServicioEstudio(string fecha)
+        {
+            pedidosDataGrid.Items.Clear();
+            MySqlDataReader reade = conDB.ListSql("select p.id, p.orden, p.id_paciente, pac.nombre, pac.apellido, serv.nombre from pedidos as p inner join detallepedidos as dp  on p.id = dp.id_pedido inner join servicios as serv on p.servicio = serv.id inner join pacientes as pac on p.id_paciente = pac.ci inner join estudios as e on e.id = dp.id_analisis where  p.servicio = '" + filtrarServicioComboBox.SelectedValue.ToString() + "' and e.id_grupo_estudios = '" + filtrarEstudioComboBox.SelectedValue.ToString() + "' and p.fecha = '" + fecha + "' group by id; ");
+            while (reade.Read())
+            {
+                Pedido p = new Pedido();
+                p.Id = reade.GetValue(0).ToString();
+                p.Orden = reade.GetValue(1).ToString();
+                p.Ci = reade.GetValue(2).ToString();
+                p.Nombre = reade.GetValue(3).ToString();
+                p.Apellido = reade.GetValue(4).ToString();
+                p.Servicio = reade.GetValue(5).ToString();
+
+                pedidosDataGrid.Items.Add(p);
+            }
+        }
+
+        private void filterFecha(string fecha)
+        {
+            pedidosDataGrid.Items.Clear();
+            MySqlDataReader reade = conDB.ListSql("select p.id, p.orden, p.id_paciente, pac.nombre, pac.apellido, serv.nombre from pedidos as p inner join detallepedidos as dp  on p.id = dp.id_pedido inner join servicios as serv on p.servicio = serv.id inner join pacientes as pac on p.id_paciente = pac.ci inner join estudios as e on e.id = dp.id_analisis where p.fecha = '" + fecha + "' group by id; ");
+            while (reade.Read())
+            {
+                Pedido p = new Pedido();
+                p.Id = reade.GetValue(0).ToString();
+                p.Orden = reade.GetValue(1).ToString();
+                p.Ci = reade.GetValue(2).ToString();
+                p.Nombre = reade.GetValue(3).ToString();
+                p.Apellido = reade.GetValue(4).ToString();
+                p.Servicio = reade.GetValue(5).ToString();
+
+                pedidosDataGrid.Items.Add(p);
+            }
+        }
+
+        private void filterServicios(string fecha)
+        {
+            pedidosDataGrid.Items.Clear();
+            MySqlDataReader reade = conDB.ListSql("select p.id, p.orden, p.id_paciente, pac.nombre, pac.apellido, serv.nombre from pedidos as p inner join detallepedidos as dp  on p.id = dp.id_pedido inner join servicios as serv on p.servicio = serv.id inner join pacientes as pac on p.id_paciente = pac.ci inner join estudios as e on e.id = dp.id_analisis where p.fecha = '"+ fecha +"' and p.servicio = '"+ filtrarServicioComboBox.SelectedValue.ToString() +"'  group by id; ");
+            while (reade.Read())
+            {
+                Pedido p = new Pedido();
+                p.Id = reade.GetValue(0).ToString();
+                p.Orden = reade.GetValue(1).ToString();
+                p.Ci = reade.GetValue(2).ToString();
+                p.Nombre = reade.GetValue(3).ToString();
+                p.Apellido = reade.GetValue(4).ToString();
+                p.Servicio = reade.GetValue(5).ToString();
+
+                pedidosDataGrid.Items.Add(p);
+            }
+        }
+
+        private void filterEstudios(string fecha)
+        {
+            pedidosDataGrid.Items.Clear();
+            MySqlDataReader reade = conDB.ListSql("select p.id, p.orden, p.id_paciente, pac.nombre, pac.apellido, serv.nombre from pedidos as p inner join detallepedidos as dp on p.id = dp.id_pedido inner join servicios as serv on p.servicio = serv.id inner join pacientes as pac on p.id_paciente = pac.ci inner join estudios as e on e.id = dp.id_analisis where p.fecha = '" + fecha + "' and e.id_grupo_estudios = '"+filtrarEstudioComboBox.SelectedValue+"' group by id; ");
+            while (reade.Read())
+            {
+                Pedido p = new Pedido();
+                p.Id = reade.GetValue(0).ToString();
+                p.Orden = reade.GetValue(1).ToString();
+                p.Ci = reade.GetValue(2).ToString();
+                p.Nombre = reade.GetValue(3).ToString();
+                p.Apellido = reade.GetValue(4).ToString();
+                p.Servicio = reade.GetValue(5).ToString();
+
+                pedidosDataGrid.Items.Add(p);
+            }
+        }
+
+        //MOSTRAR TODO BUTTON
+        private void MostrarTodoButton_Click(object sender, RoutedEventArgs e)
+        {
+            filtrarEstudioComboBox.SelectedValue = null;
+            filtrarServicioComboBox.SelectedValue = null;
+            filtrarFechaDatePecker.SelectedDate = null;
+            fechaPedidosTextBox.Text = DateTime.Now.ToString("dd-MM-yyyy");
+            getPedidos();
         }
 
 

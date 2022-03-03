@@ -15,7 +15,6 @@
                         <ColumnDefinition Width="850*"/>
                         <ColumnDefinition Width="267*"/>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="guardarButton" Content="GUARDAR" HorizontalAlignment="Left" Margin="632,443,0,0" VerticalAlignment="Top" Width="116" Height="34" Click="Button_Click"/>
                     <GroupBox x:Name="hemogramaGroupBox" Header="HEMOGRAMA" HorizontalAlignment="Left" Height="316" Margin="123,430,0,0" VerticalAlignment="Top" Width="230" Background="#FFD3CECE">
                         <Grid x:Name="hrmogramaGroupBox" HorizontalAlignment="Left" Height="294" VerticalAlignment="Top" Width="220" Margin="0,0,-2,0" Background="#FFD3CECE">
                             <CheckBox x:Name="opcion1CheckBox" Content="HEMOGRAMA" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="Opcion1CheckBox_Checked" Height="22" Width="143" Unchecked="Opcion1CheckBox_Unchecked"/>
@@ -52,11 +51,13 @@
                             <Label x:Name="sexoLabel" Content="SEXO" HorizontalAlignment="Left" Margin="10,354,0,0" VerticalAlignment="Top" FontSize="16"/>
                             <RadioButton x:Name="femeninoRadioButton" Content="FEMENINO" HorizontalAlignment="Left" Margin="209,360,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.615,0.933" FontWeight="Bold" FontSize="16" Height="21"/>
                             <RadioButton x:Name="masculinoRadioButton" Content="MASCULINO" HorizontalAlignment="Left" Margin="332,361,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-                            <CheckBox x:Name="resultadosCheckBox" Content="AGREGAR PEDIDO" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="586,269,0,0" Checked="CheckBox_Checked_1" Unchecked="CheckBox_Unchecked"/>
-                            <Label Content="ORDEN" HorizontalAlignment="Left" Margin="585,142,0,0" VerticalAlignment="Top" FontSize="16"/>
-                            <TextBox x:Name="ordenTextBox" IsReadOnly="True" HorizontalAlignment="Left" Height="31" Margin="687,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72" FontSize="16" TextAlignment="Center"/>
-                            <Label Content="SERVICIO" HorizontalAlignment="Left" Margin="585,203,0,0" VerticalAlignment="Top" FontSize="16"/>
-                            <ComboBox x:Name="servicioComboBox" HorizontalAlignment="Left" Margin="687,203,0,0" VerticalAlignment="Top" Width="221" Height="31" FontSize="16"/>
+                            <CheckBox x:Name="resultadosCheckBox" Content="AGREGAR PEDIDO" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="587,133,0,0" Checked="CheckBox_Checked_1" Unchecked="CheckBox_Unchecked"/>
+                            <Label x:Name="ordenLabel" Content="ORDEN" HorizontalAlignment="Left" Margin="585,194,0,0" VerticalAlignment="Top" FontSize="16"/>
+                            <TextBox x:Name="ordenTextBox" IsReadOnly="True" HorizontalAlignment="Left" Height="31" Margin="687,194,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72" FontSize="16" TextAlignment="Center"/>
+                            <Label x:Name="servicioLabel" Content="SERVICIO" HorizontalAlignment="Left" Margin="585,253,0,0" VerticalAlignment="Top" FontSize="16"/>
+                            <ComboBox x:Name="servicioComboBox" HorizontalAlignment="Left" Margin="687,253,0,0" VerticalAlignment="Top" Width="221" Height="31" FontSize="16"/>
+                            <Button x:Name="guardarButton" Content="GUARDAR" HorizontalAlignment="Left" Margin="939,5,0,0" VerticalAlignment="Top" Width="116" Height="34" Click="Button_Click" Background="#FF6CFB42" FontSize="16"/>
+                            <Separator HorizontalAlignment="Left" Height="31" Margin="587,158,0,0" VerticalAlignment="Top" Width="321"/>
                         </Grid>
                     </GroupBox>
                     <GroupBox x:Name="sangreGroupBox" Header="ANALISIS DE SANGRE" HorizontalAlignment="Left" Height="316" Margin="358,430,0,0" VerticalAlignment="Top" Width="230">
@@ -79,13 +80,14 @@
             </TabItem>
             <TabItem x:Name="estudiosTabItem" Header="ESTUDIOS">
                 <Grid Background="#FFD1D1D1">
-                    <DataGrid x:Name="pedidosDataGrid" AlternatingRowBackground="LightBlue"  HorizontalAlignment="Left" Height="496" Margin="200,168,0,0" VerticalAlignment="Top" Width="790" BorderBrush="{x:Null}" Background="#FFD1D1D1" GridLinesVisibility="None">
+                    <DataGrid x:Name="pedidosDataGrid" AlternatingRowBackground="LightBlue"  HorizontalAlignment="Left" Height="496" Margin="147,177,0,0" VerticalAlignment="Top" Width="843" BorderBrush="{x:Null}" Background="#FFD1D1D1" GridLinesVisibility="None">
                         <DataGrid.Columns>
                             <DataGridTextColumn Width="100" Header="ID" Binding="{Binding Id}"/>
                             <DataGridTextColumn Width="100" Header="ORDEN"/>
                             <DataGridTextColumn Width="100" Header="CI" Binding="{Binding Ci}"/>
-                            <DataGridTextColumn Width="100" Header="NOMBRE" Binding="{Binding NombreApellido}"/>
-                            <DataGridTextColumn Width="100" Header="SERVICIO"/>
+                            <DataGridTextColumn Width="100" Header="NOMBRE" Binding="{Binding Nombre}"/>
+                            <DataGridTextColumn Width="100" Header="APELLIDO" Binding="{Binding Apellido}"/>
+                            <DataGridTextColumn Width="100" Header="SERVICIO" Binding="{Binding Servicio}"/>
                             <DataGridTemplateColumn Width="250">
                                 <DataGridTemplateColumn.HeaderTemplate>
                                     <DataTemplate>
@@ -105,22 +107,21 @@
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Border BorderBrush="#FF9C9C9C" BorderThickness="1" HorizontalAlignment="Left" Height="45" Margin="200,65,0,0" VerticalAlignment="Top" Width="790" CornerRadius="5">
+                    <Border BorderBrush="#FF9C9C9C" BorderThickness="1" HorizontalAlignment="Left" Height="45" Margin="147,64,0,0" VerticalAlignment="Top" Width="843" CornerRadius="5">
                         <Grid>
-                            <ComboBox x:Name="filtrarServicioComboBox" HorizontalAlignment="Left" Margin="60,11,0,0" VerticalAlignment="Top" Width="157"/>
-                            <Label Content="SERVICIO" HorizontalAlignment="Left" Margin="0,8,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.517,1.885"/>
-                            <Label Content="ESTUDIO" HorizontalAlignment="Left" Margin="236,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.31,0.462"/>
-                            <ComboBox x:Name="filtrarEstudioComboBox" HorizontalAlignment="Left" Margin="294,12,0,0" VerticalAlignment="Top" Width="157"/>
-                            <Button x:Name="filtrarButton" Content="FILTRAR" HorizontalAlignment="Left" Margin="700,0,0,0" VerticalAlignment="Top" Width="88" Height="43" Click="FiltrarButton_Click"/>
-                            <DatePicker x:Name="filtrarFechaDatePecker" HorizontalAlignment="Left" Margin="521,12,0,0" VerticalAlignment="Top" Width="158"/>
-                            <Label Content="FECHA" HorizontalAlignment="Left" Margin="475,10,0,0" VerticalAlignment="Top"/>
+                            <ComboBox x:Name="filtrarServicioComboBox" HorizontalAlignment="Left" Margin="82,11,0,0" VerticalAlignment="Top" Width="157"/>
+                            <Label Content="SERVICIO" HorizontalAlignment="Left" Margin="22,9,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.517,1.885"/>
+                            <Label Content="ESTUDIO" HorizontalAlignment="Left" Margin="275,9,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.31,0.462"/>
+                            <ComboBox x:Name="filtrarEstudioComboBox" HorizontalAlignment="Left" Margin="338,11,0,0" VerticalAlignment="Top" Width="157"/>
+                            <Button x:Name="filtrarButton" Content="FILTRAR" HorizontalAlignment="Left" Margin="753,0,0,0" VerticalAlignment="Top" Width="88" Height="43" Click="FiltrarButton_Click"/>
+                            <DatePicker x:Name="filtrarFechaDatePecker" HorizontalAlignment="Left" Margin="569,11,0,0" VerticalAlignment="Top" Width="158"/>
+                            <Label Content="FECHA" HorizontalAlignment="Left" Margin="518,11,0,0" VerticalAlignment="Top"/>
                         </Grid>
                     </Border>
-                    <Label Content="FECHA: " HorizontalAlignment="Left" Margin="200,127,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
-                    <Button Content="MOSTRAR TODO" HorizontalAlignment="Left" Margin="863,127,0,0" VerticalAlignment="Top" Width="127" Height="32" Background="#FFDDDDDD" BorderBrush="#FF8F8E8E"/>
-                    <TextBox x:Name="fechaPedidosTextBox" IsReadOnly="True" HorizontalAlignment="Left" Height="30" Margin="269,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="FECHA: " HorizontalAlignment="Left" Margin="147,127,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
+                    <Button x:Name="mostrarTodoButton" Content="MOSTRAR TODO" HorizontalAlignment="Left" Margin="863,127,0,0" VerticalAlignment="Top" Width="127" Height="32" Background="#FFDDDDDD" BorderBrush="#FF8F8E8E" Click="MostrarTodoButton_Click"/>
+                    <TextBox x:Name="fechaPedidosTextBox" IsReadOnly="True" HorizontalAlignment="Left" Height="30" Margin="230,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                     <Label Content="PEDIDOS" HorizontalAlignment="Left" Margin="513,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-                    <TextBox x:Name="filtroTextBox" HorizontalAlignment="Left" Height="23" Margin="423,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="77"/>
 
                 </Grid>
             </TabItem>
