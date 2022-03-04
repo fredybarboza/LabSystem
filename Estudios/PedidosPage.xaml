@@ -1,0 +1,114 @@
+﻿<Window x:Class="LaboratorioBogado.Estudios.PedidosPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LaboratorioBogado.Estudios"
+        mc:Ignorable="d"
+        Title="PedidosPage" Height="700" Width="1024" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <ScrollViewer>
+        <Grid>
+            <GroupBox x:Name="hemogramaGroupBox" Header="HEMOGRAMA" HorizontalAlignment="Left" Height="316" Margin="10,288,0,0" VerticalAlignment="Top" Width="230" Background="#FFD3CECE">
+                <Grid x:Name="hrmogramaGroupBox" HorizontalAlignment="Left" Height="294" VerticalAlignment="Top" Width="220" Margin="0,0,-2,0" Background="#FFD3CECE">
+                    <CheckBox x:Name="opcion1CheckBox" Content="HEMOGRAMA" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"  Height="22" Width="143"/>
+                    <CheckBox x:Name="hemoglobinaCheckBox" Content="Hemoglobina" HorizontalAlignment="Left" Margin="33,32,0,0" VerticalAlignment="Top" Checked="HemoglobinaCheckBox_Checked" Unchecked="HemoglobinaCheckBox_Unchecked"/>
+                    <CheckBox x:Name="hematocritoCheckBox" Content="Hematocrito" HorizontalAlignment="Left" Margin="33,52,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="grCheckBox" Content="Glóbulos  Rojos" HorizontalAlignment="Left" Margin="33,72,0,0" VerticalAlignment="Top" Width="122"/>
+                    <CheckBox x:Name="gbCheckBox" Content="Glóbulos Blancos" HorizontalAlignment="Left" Margin="33,92,0,0" VerticalAlignment="Top" Width="122"/>
+                    <CheckBox x:Name="plaquetasCheckBox" Content="Plaquetas" HorizontalAlignment="Left" Margin="33,112,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="eritroCheckBox" Content="Eritrosedimentación" HorizontalAlignment="Left" Margin="33,132,0,0" VerticalAlignment="Top"/>
+                    <Label Content="FORMULA LEUCOCITARIA" HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top" FontSize="11"/>
+                    <CheckBox x:Name="neCheckBox" Content="Neutrófilos" HorizontalAlignment="Left" Margin="33,177,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="linCheckBox" Content="Linfocitos" HorizontalAlignment="Left" Margin="33,197,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="monoCheckBox" Content="Monocitos" HorizontalAlignment="Left" Margin="33,217,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="eosCheckBox" Content="Eosinófilos" HorizontalAlignment="Left" Margin="33,237,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="basoCheckBox" Content="Basófilos" HorizontalAlignment="Left" Margin="33,257,0,0" VerticalAlignment="Top" />
+                </Grid>
+            </GroupBox>
+            <GroupBox x:Name="hemogramaGroupBox_Copy4" Header="HEMOGRAMA" HorizontalAlignment="Left" Height="316" Margin="245,414,0,0" VerticalAlignment="Top" Width="230" Background="#FFD3CECE">
+                <Grid x:Name="hrmogramaGroupBox5" HorizontalAlignment="Left" Height="294" VerticalAlignment="Top" Width="220" Margin="0,0,-2,0" Background="#FFD3CECE">
+                    <CheckBox x:Name="opcion1CheckBox5" Content="HEMOGRAMA" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"  Height="22" Width="143"/>
+                    <CheckBox x:Name="hemoglobinaCheckBox5" Content="Hemoglobina" HorizontalAlignment="Left" Margin="33,32,0,0" VerticalAlignment="Top" Checked="HemoglobinaCheckBox_Checked" Unchecked="HemoglobinaCheckBox_Unchecked"/>
+                    <CheckBox x:Name="hematocritoCheckBox5" Content="Hematocrito" HorizontalAlignment="Left" Margin="33,52,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="grCheckBox5" Content="Glóbulos  Rojos" HorizontalAlignment="Left" Margin="33,72,0,0" VerticalAlignment="Top" Width="122"/>
+                    <CheckBox x:Name="gbCheckBox5" Content="Glóbulos Blancos" HorizontalAlignment="Left" Margin="33,92,0,0" VerticalAlignment="Top" Width="122"/>
+                    <CheckBox x:Name="plaquetasCheckBox5" Content="Plaquetas" HorizontalAlignment="Left" Margin="33,112,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="eritroCheckBox5" Content="Eritrosedimentación" HorizontalAlignment="Left" Margin="33,132,0,0" VerticalAlignment="Top"/>
+                    <Label Content="FORMULA LEUCOCITARIA" HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top" FontSize="11"/>
+                    <CheckBox x:Name="neCheckBox5" Content="Neutrófilos" HorizontalAlignment="Left" Margin="33,177,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="linCheckBox5" Content="Linfocitos" HorizontalAlignment="Left" Margin="33,197,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="monoCheckBox5" Content="Monocitos" HorizontalAlignment="Left" Margin="33,217,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="eosCheckBox5" Content="Eosinófilos" HorizontalAlignment="Left" Margin="33,237,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="basoCheckBox5" Content="Basófilos" HorizontalAlignment="Left" Margin="33,257,0,0" VerticalAlignment="Top" />
+                </Grid>
+            </GroupBox>
+            <GroupBox x:Name="hemogramaGroupBox_Copy5" Header="HEMOGRAMA" HorizontalAlignment="Left" Height="316" Margin="480,414,0,0" VerticalAlignment="Top" Width="230" Background="#FFD3CECE">
+                <Grid x:Name="hrmogramaGroupBox6" HorizontalAlignment="Left" Height="294" VerticalAlignment="Top" Width="220" Margin="0,0,-2,0" Background="#FFD3CECE">
+                    <CheckBox x:Name="opcion1CheckBox6" Content="HEMOGRAMA" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"  Height="22" Width="143"/>
+                    <CheckBox x:Name="hemoglobinaCheckBox6" Content="Hemoglobina" HorizontalAlignment="Left" Margin="33,32,0,0" VerticalAlignment="Top" Checked="HemoglobinaCheckBox_Checked" Unchecked="HemoglobinaCheckBox_Unchecked"/>
+                    <CheckBox x:Name="hematocritoCheckBox6" Content="Hematocrito" HorizontalAlignment="Left" Margin="33,52,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="grCheckBox6" Content="Glóbulos  Rojos" HorizontalAlignment="Left" Margin="33,72,0,0" VerticalAlignment="Top" Width="122"/>
+                    <CheckBox x:Name="gbCheckBox6" Content="Glóbulos Blancos" HorizontalAlignment="Left" Margin="33,92,0,0" VerticalAlignment="Top" Width="122"/>
+                    <CheckBox x:Name="plaquetasCheckBox6" Content="Plaquetas" HorizontalAlignment="Left" Margin="33,112,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="eritroCheckBox6" Content="Eritrosedimentación" HorizontalAlignment="Left" Margin="33,132,0,0" VerticalAlignment="Top"/>
+                    <Label Content="FORMULA LEUCOCITARIA" HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top" FontSize="11"/>
+                    <CheckBox x:Name="neCheckBox6" Content="Neutrófilos" HorizontalAlignment="Left" Margin="33,177,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="linCheckBox6" Content="Linfocitos" HorizontalAlignment="Left" Margin="33,197,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="monoCheckBox6" Content="Monocitos" HorizontalAlignment="Left" Margin="33,217,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="eosCheckBox6" Content="Eosinófilos" HorizontalAlignment="Left" Margin="33,237,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="basoCheckBox6" Content="Basófilos" HorizontalAlignment="Left" Margin="33,257,0,0" VerticalAlignment="Top" />
+                    <GroupBox x:Name="hemogramaGroupBox_Copy6" Header="HEMOGRAMA" HorizontalAlignment="Left" Height="316" Margin="229,-14,-239,-8" VerticalAlignment="Top" Width="230" Background="#FFD3CECE">
+                        <Grid x:Name="hrmogramaGroupBox7" HorizontalAlignment="Left" Height="294" VerticalAlignment="Top" Width="220" Margin="0,0,-2,0" Background="#FFD3CECE">
+                            <CheckBox x:Name="opcion1CheckBox7" Content="HEMOGRAMA" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"  Height="22" Width="143"/>
+                            <CheckBox x:Name="hemoglobinaCheckBox7" Content="Hemoglobina" HorizontalAlignment="Left" Margin="33,32,0,0" VerticalAlignment="Top" Checked="HemoglobinaCheckBox_Checked" Unchecked="HemoglobinaCheckBox_Unchecked"/>
+                            <CheckBox x:Name="hematocritoCheckBox7" Content="Hematocrito" HorizontalAlignment="Left" Margin="33,52,0,0" VerticalAlignment="Top"/>
+                            <CheckBox x:Name="grCheckBox7" Content="Glóbulos  Rojos" HorizontalAlignment="Left" Margin="33,72,0,0" VerticalAlignment="Top" Width="122"/>
+                            <CheckBox x:Name="gbCheckBox7" Content="Glóbulos Blancos" HorizontalAlignment="Left" Margin="33,92,0,0" VerticalAlignment="Top" Width="122"/>
+                            <CheckBox x:Name="plaquetasCheckBox7" Content="Plaquetas" HorizontalAlignment="Left" Margin="33,112,0,0" VerticalAlignment="Top"/>
+                            <CheckBox x:Name="eritroCheckBox7" Content="Eritrosedimentación" HorizontalAlignment="Left" Margin="33,132,0,0" VerticalAlignment="Top"/>
+                            <Label Content="FORMULA LEUCOCITARIA" HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top" FontSize="11"/>
+                            <CheckBox x:Name="neCheckBox7" Content="Neutrófilos" HorizontalAlignment="Left" Margin="33,177,0,0" VerticalAlignment="Top"/>
+                            <CheckBox x:Name="linCheckBox7" Content="Linfocitos" HorizontalAlignment="Left" Margin="33,197,0,0" VerticalAlignment="Top"/>
+                            <CheckBox x:Name="monoCheckBox7" Content="Monocitos" HorizontalAlignment="Left" Margin="33,217,0,0" VerticalAlignment="Top"/>
+                            <CheckBox x:Name="eosCheckBox7" Content="Eosinófilos" HorizontalAlignment="Left" Margin="33,237,0,0" VerticalAlignment="Top"/>
+                            <CheckBox x:Name="basoCheckBox7" Content="Basófilos" HorizontalAlignment="Left" Margin="33,257,0,0" VerticalAlignment="Top" />
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </GroupBox>
+            <Grid HorizontalAlignment="Left" Height="87" Margin="0,883,0,0" VerticalAlignment="Top" Width="999" Background="#FFEAE8E8"/>
+            <Grid HorizontalAlignment="Left" Height="238" VerticalAlignment="Top" Width="972" Background="#FFDAD7D7" Margin="10,10,0,0">
+                <Grid.Effect>
+                    <DropShadowEffect/>
+                </Grid.Effect>
+                <Label x:Name="ciLabel" Content="C.I" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="-3.179,0.097"/>
+                <Label x:Name="servicioLabel" Content="SERVICIO" HorizontalAlignment="Left" Margin="458,146,0,0" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="nombreLabel" Content="NOMBRE" HorizontalAlignment="Left" Margin="10,104,0,0" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="apellidoLabel" Content="APELLIDO" HorizontalAlignment="Left" Margin="10,149,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="4.675,0.161"/>
+                <TextBox HorizontalAlignment="Left" Height="40" Margin="121,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
+                <ComboBox HorizontalAlignment="Left" Margin="540,146,0,0" VerticalAlignment="Top" Width="250" Height="31"/>
+                <Label Content="ORDEN" HorizontalAlignment="Left" Margin="457,190,0,0" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="fechaLabel" Content="FECHA " HorizontalAlignment="Left" Margin="458,104,0,0" VerticalAlignment="Top" Height="36" FontSize="16" RenderTransformOrigin="0.597,0.556"/>
+                <Label x:Name="FechaActualLabel" Content="" HorizontalAlignment="Left" Margin="540,104,0,0" VerticalAlignment="Top" Width="144" FontWeight="Bold" FontSize="16" Background="#FFC1B8B8"/>
+                <Label Content="AGREGAR NUEVO PEDIDO" HorizontalAlignment="Left" Margin="359,0,0,0" VerticalAlignment="Top" FontSize="20"/>
+                <Button Content="GUARDAR" HorizontalAlignment="Left" Margin="824,10,0,0" VerticalAlignment="Top" Width="138" FontSize="16" Height="33"/>
+                <Label Content="" HorizontalAlignment="Left" Margin="121,104,0,0" VerticalAlignment="Top" Width="265" Height="37" BorderBrush="#FF892222" Background="#FFC1B8B8"/>
+                <Label Content="" HorizontalAlignment="Left" Margin="121,146,0,0" VerticalAlignment="Top" Width="265" Height="36" Background="#FFC1B8B8"/>
+                <Label Content="EDAD" HorizontalAlignment="Left" Margin="10,185,0,0" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="" HorizontalAlignment="Left" Margin="121,190,0,0" VerticalAlignment="Top" Width="115" Height="34" Background="#FFC1B8B8"/>
+                <Label Content="" HorizontalAlignment="Left" Margin="540,190,0,0" VerticalAlignment="Top" Width="83" Height="32" Background="#FFC1B8B8"/>
+                <Button HorizontalAlignment="Left" Margin="250,190,0,0" VerticalAlignment="Top" Width="136" Height="34" BorderBrush="#FFB2B0B0">
+                    <Grid Height="34" Width="131">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="111*"/>
+                            <ColumnDefinition Width="20*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image HorizontalAlignment="Left" Height="34" Source="/Image/userplus.png
+                               " VerticalAlignment="Top" Width="52"/>
+                        <Label Content="NUEVO" HorizontalAlignment="Left" Margin="60,0,0,0" VerticalAlignment="Top" FontSize="16" Grid.ColumnSpan="2"/>
+                    </Grid>
+                </Button>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</Window>

@@ -66,9 +66,18 @@
     <Compile Include="Estudios\Analisis.cs" />
     <Compile Include="Estudios\Hemograma.cs" />
     <Compile Include="Estudios\Impresion.cs" />
+    <Compile Include="Estudios\PacientePage.xaml.cs">
+      <DependentUpon>PacientePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Estudios\Pedido.cs" />
+    <Compile Include="Estudios\PedidosPage.xaml.cs">
+      <DependentUpon>PedidosPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Estudios\ServicioEnum.cs" />
     <Compile Include="Estudios\Servicios.cs" />
+    <Compile Include="Estudios\Succes.xaml.cs">
+      <DependentUpon>Succes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ImprimirPage.xaml.cs">
       <DependentUpon>ImprimirPage.xaml</DependentUpon>
     </Compile>
@@ -78,6 +87,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DetallePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Estudios\PacientePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Estudios\PedidosPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Estudios\Succes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -123,6 +144,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\bien.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\pedido.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\estudios.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\historial.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\userplus.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

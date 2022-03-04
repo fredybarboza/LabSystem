@@ -18,6 +18,7 @@ using LaboratorioBogado.Estudios;
 using System.Collections.ObjectModel;
 
 
+
 namespace LaboratorioBogado
 {
     /// <summary>
@@ -30,9 +31,6 @@ namespace LaboratorioBogado
         ObservableCollection<Servicios> ListaServicios = new ObservableCollection<Servicios>();
         ObservableCollection<Servicios> ls2 = new ObservableCollection<Servicios>();
         ObservableCollection<Analisis> ListaEstudios = new ObservableCollection<Analisis>();
-
-
-
 
         public MainWindow()
         {
@@ -90,7 +88,7 @@ namespace LaboratorioBogado
 
             
 
-            resultadosCheckBox.IsEnabled = false;
+            
 
             ordenLabel.Opacity = 0.3;
             ordenTextBox.IsEnabled = false;
@@ -267,7 +265,9 @@ namespace LaboratorioBogado
                 string sql = "";
                 sql = "INSERT INTO `detallepedidos` (`id_pedido`, `id_analisis`) VALUES ('" + lastid + "', '" + b.IdAnalisis + "')";
                 conDB.ExecuteSQL(sql);
+                MessageBox.Show("METODO GUARDAR DETALLE");
             }
+            
             ListaDetallePedido.Clear();
         }
 
@@ -283,15 +283,15 @@ namespace LaboratorioBogado
         //GUARDAR BUTTON
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            guardarPaciente();
-            guardarPedido();
+               
+           guardarPaciente();
+            /* guardarPedido();
             ciTextBox.Text = "";
-            resultadosCheckBox.IsEnabled = false;
-            resultadosCheckBox.IsChecked = false;
+            
             string id_ultimo_pedido = obtenerUltimoPedido();
             guardarDetallePedido(id_ultimo_pedido);
             getPedidos();
-            readOrden();
+            readOrden();*/
         }
 
         //LIMPIAR DATOS
@@ -348,45 +348,35 @@ namespace LaboratorioBogado
         //BUSCAR BUTTON
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            resultadosCheckBox.IsEnabled = true;
-            resultadosCheckBox.IsChecked = false;
+            
             string ci = ciTextBox.Text;
             int c = 0;
             MySqlDataReader reade = conDB.ListSql("select nombre, apellido, edad, fecha_nacimiento, sexo from pacientes where ci=" + ci);
 
-            while (reade.Read())
+            if (reade != null)
             {
-                nombreTextBox.Text = reade.GetValue(0).ToString();
-                apellidoTextBox.Text = reade.GetValue(1).ToString();
-                edadTextBox.Text = reade.GetValue(2).ToString();
-                fechaNacDatePicker.SelectedDate = Convert.ToDateTime(reade.GetValue(3).ToString());
-                string s = reade.GetValue(4).ToString();
-                if (s == "M"){ masculinoRadioButton.IsChecked = true;} else { femeninoRadioButton.IsChecked = true; }
-
-                c = 1;
-                if (resultadosCheckBox.IsChecked==true)
+                while (reade.Read())
                 {
-                    guardarButton.IsEnabled = true;
-                }
-            }
+                    nombreTextBox.Text = reade.GetValue(0).ToString();
+                    apellidoTextBox.Text = reade.GetValue(1).ToString();
+                    edadTextBox.Text = reade.GetValue(2).ToString();
+                    fechaNacDatePicker.SelectedDate = Convert.ToDateTime(reade.GetValue(3).ToString());
+                    string s = reade.GetValue(4).ToString();
+                    if (s == "M") { masculinoRadioButton.IsChecked = true; } else { femeninoRadioButton.IsChecked = true; }
 
-            if (c == 1){ activarDesactivarDatos(true, 1.0);} else { clearInput(); activarDesactivarDatos(false, 1.0); guardarButton.IsEnabled = true; }      
-            
+                    c = 1;
+                    
+                }
+
+                if (c == 1) { activarDesactivarDatos(true, 1.0); } else { clearInput(); activarDesactivarDatos(false, 1.0); guardarButton.IsEnabled = true; }
+            }
+            else
+            {
+                MessageBox.Show("ERROR EN LA CARGA DE DATOS", "ERROR",MessageBoxButton.OK,MessageBoxImage.Error);
+            }
         }
     
-        //AGREGAR PEDIDO CHECKBOX
-        private void CheckBox_Checked_1(object sender, RoutedEventArgs e)
-        {
-            hemogramaGroupBox.Visibility = Visibility.Visible;
-            sangreGroupBox.Visibility = Visibility.Visible;
-            ordenLabel.Opacity = 1.0;
-            ordenTextBox.IsEnabled = true;
-            servicioLabel.Opacity = 1.0;
-            servicioComboBox.IsEnabled = true;
-            if (ciTextBox.Text!="") {
-                guardarButton.IsEnabled = true;
-            }
-        }
+        
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
@@ -398,6 +388,7 @@ namespace LaboratorioBogado
 
             opcion1CheckBox.IsChecked = false;
             opcion2CheckBox.IsChecked = false;
+            servicioComboBox.SelectedValue = null;
 
             guardarButton.Visibility = Visibility.Visible;
 
@@ -414,10 +405,10 @@ namespace LaboratorioBogado
 
         private void CiTextBox_KeyUp(object sender, KeyEventArgs e)
         {
+  
             if (ciTextBox.Text == "")
             {
-                resultadosCheckBox.IsEnabled = false;
-                resultadosCheckBox.IsChecked = false;
+                
                 guardarButton.IsEnabled = false;
                 buscarButton.IsEnabled = false;
             }
@@ -425,8 +416,7 @@ namespace LaboratorioBogado
             {
                 buscarButton.IsEnabled = true;
             }
-            resultadosCheckBox.IsChecked = false;
-            resultadosCheckBox.IsEnabled = false;
+            
             guardarButton.IsEnabled = false;
             activarDesactivarDatos(true, 0.3);
             clearInput();
@@ -551,7 +541,9 @@ namespace LaboratorioBogado
                 p.Servicio = reade.GetValue(5).ToString();
 
                 pedidosDataGrid.Items.Add(p);
+                
             }
+            
         }
 
         private void DetalleButton_Click(object sender, RoutedEventArgs e)
@@ -565,6 +557,7 @@ namespace LaboratorioBogado
         {
             string id_pedido = pedidosDataGrid.SelectedValue.ToString();
             CargarPage cp = new CargarPage(id_pedido);
+
             cp.ShowDialog();
         }
 
@@ -949,6 +942,45 @@ namespace LaboratorioBogado
             fechaPedidosTextBox.Text = DateTime.Now.ToString("dd-MM-yyyy");
             getPedidos();
         }
+
+        private void AgregarPedidoButton_Click(object sender, RoutedEventArgs e)
+        {
+            PedidosPage pg = new PedidosPage();
+            pg.ShowDialog();
+        }
+
+        private void SolicitudButton_Click(object sender, RoutedEventArgs e)
+        {
+            PedidosPage pg = new PedidosPage();
+            pg.ShowDialog();
+        }
+
+        //cancelar
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            PedidosPage pp = new PedidosPage(); 
+        }
+
+        private void EstudiosButton_Click(object sender, RoutedEventArgs e)
+        {
+            estudiosTabItem.IsSelected = true;
+        }
+
+        private void NuevoPacienteButton_Click(object sender, RoutedEventArgs e)
+        {
+            PacientePage pp = new PacientePage();
+            pp.ShowDialog();
+        }
+
+        private void NuevoPedidoButton_Click(object sender, RoutedEventArgs e)
+        {
+            PedidosPage pp = new PedidosPage();
+            pp.ShowDialog();
+        }
+
+
+
+
 
 
 

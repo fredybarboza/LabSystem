@@ -26,3 +26,9 @@ C:\Users\user\Desktop\LaboratorioBogado\obj\Debug\CargarPage.g.cs
 C:\Users\user\Desktop\LaboratorioBogado\obj\Debug\CargarPage.baml
 C:\Users\user\Desktop\LaboratorioBogado\obj\Debug\ImprimirPage.g.cs
 C:\Users\user\Desktop\LaboratorioBogado\obj\Debug\ImprimirPage.baml
+C:\Users\user\Desktop\LaboratorioBogado\obj\Debug\Estudios\Succes.g.cs
+C:\Users\user\Desktop\LaboratorioBogado\obj\Debug\Estudios\Succes.baml
+C:\Users\user\Desktop\LaboratorioBogado\obj\Debug\Estudios\PedidosPage.g.cs
+C:\Users\user\Desktop\LaboratorioBogado\obj\Debug\Estudios\PedidosPage.baml
+C:\Users\user\Desktop\LaboratorioBogado\obj\Debug\Estudios\PacientePage.g.cs
+C:\Users\user\Desktop\LaboratorioBogado\obj\Debug\Estudios\PacientePage.baml
