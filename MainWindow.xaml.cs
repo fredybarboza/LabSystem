@@ -34,18 +34,14 @@ namespace LaboratorioBogado
 
         public MainWindow()
         {
+            
             InitializeComponent();
             InitData();
         }
 
         void InitData()
         {
-            //INIT COMBO BOX SERVICIOS
-            readServicios(false);
-            servicioComboBox.ItemsSource = ListaServicios;
-            servicioComboBox.DisplayMemberPath = "Nombre";
-            servicioComboBox.SelectedValuePath = "Id";
-
+            
             readServicios(true);
             filtrarServicioComboBox.ItemsSource = ls2;
             filtrarServicioComboBox.DisplayMemberPath = "Nombre";
@@ -57,27 +53,21 @@ namespace LaboratorioBogado
             filtrarEstudioComboBox.SelectedValuePath = "Id";
 
 
-            FechaActualLabel.Content = DateTime.Now.ToString("dd-MM-yyyy");
+        
             fechaPedidosTextBox.Text = DateTime.Now.ToString("dd-MM-yyyy");
 
-            edadTextBox.IsReadOnly = false;
+            
+
+            
 
             
 
             
 
-            guardarButton.IsEnabled = false;
-
-            buscarButton.IsEnabled = false;
-
-            hemogramaGroupBox.Visibility = Visibility.Hidden;
-            sangreGroupBox.Visibility = Visibility.Hidden;
-
-            activarDesactivarDatos(true, 0.3);
 
             
 
-            getPedidos();
+           getPedidos();
 
             
 
@@ -90,10 +80,7 @@ namespace LaboratorioBogado
 
             
 
-            ordenLabel.Opacity = 0.3;
-            ordenTextBox.IsEnabled = false;
-            servicioLabel.Opacity = 0.3;
-            servicioComboBox.IsEnabled = false;
+           
 
         }
 
@@ -149,36 +136,7 @@ namespace LaboratorioBogado
 
 
 
-        //FUNCION PARA MARCAR-DESMARCAR SUBOPCIONES DEL HEMOGRAMA
-        private void allOptionsHemograma(bool a)
-        {
-                hemoglobinaCheckBox.IsChecked = a;
-                hematocritoCheckBox.IsChecked = a;
-                grCheckBox.IsChecked = a;
-                gbCheckBox.IsChecked = a;
-                plaquetasCheckBox.IsChecked = a;
-                eritroCheckBox.IsChecked = a;
-                neCheckBox.IsChecked = a;
-                linCheckBox.IsChecked = a;
-                monoCheckBox.IsChecked = a;
-                eosCheckBox.IsChecked = a;
-                basoCheckBox.IsChecked = a;
-        }
-
-        //FUNCION PARA MARCAR-DESMARCAR SUBOPCIONES DEL ANALISIS DE SANGRE
-        private void allOptionsSangre(bool a)
-        {
-            glicemiaCheckBox.IsChecked = a;
-            ureaCheckBox.IsChecked = a;
-            acidouCheckBox.IsChecked = a;
-            colesterolCheckBox.IsChecked = a;
-            trigliceridosCheckBox.IsChecked = a;
-            creatininaCheckBox.IsChecked = a;
-            gotCheckBox.IsChecked = a;
-            gptCheckBox.IsChecked = a;
-            fosfatasaCheckBox.IsChecked = a;
-            amilasaCheckBox.IsChecked = a;
-        }
+       
 
        
 
@@ -202,47 +160,8 @@ namespace LaboratorioBogado
 
        
 
-        public string returnMF()
-        {
-            if (masculinoRadioButton.IsChecked == true)
-            {
-                string s = "M";
-                return s;
-            }
-            else
-            {
-                string s = "F";
-                return s;
-            }
-        }
+       
 
-        //METODO PARA GUARDAR PACIENTE
-        private void guardarPaciente()
-        {
-            string sql = "";
-            string s = returnMF();
-
-  
-                MySqlDataReader reade = conDB.ListSql("select ci from pacientes where ci=" + ciTextBox.Text);
-                if (reade.Read() == false)
-                {
-                    if (nombreTextBox.Text != "" && apellidoTextBox.Text != "" && fechaNacDatePicker.SelectedDate != null && edadTextBox.Text != "")
-                    {
-                        if (masculinoRadioButton.IsChecked == true || femeninoRadioButton.IsChecked == true) {
-                            sql = "INSERT INTO `pacientes` (`ci`,`nombre`, `apellido`,`fecha_nacimiento`, `edad`, `sexo`) VALUES ('" + ciTextBox.Text + "','" + nombreTextBox.Text + "', '" + apellidoTextBox.Text + "', '" + fechaNacDatePicker.SelectedDate.ToString() + "', '" + edadTextBox.Text + "', '" + s + "')";
-                            conDB.ExecuteSQL(sql);
-                        clearInput();
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("complete todos los datos");
-                    }
-
-                }
-            
-            
-        }
 
         //OBTENER ID DE ULTIMO PEDIDO INGRESADO
         private string obtenerUltimoPedido()
@@ -269,157 +188,6 @@ namespace LaboratorioBogado
             }
             
             ListaDetallePedido.Clear();
-        }
-
-        //GUARDAR PEDIDO
-        private void guardarPedido()
-        {
-            string sql = "";
-            sql = "INSERT INTO `pedidos` (`orden`, `fecha`, `id_paciente`, `servicio`) VALUES ('" + ordenTextBox.Text + "', '" + FechaActualLabel.Content + "', '" + ciTextBox.Text + "', '" + servicioComboBox.SelectedValue + "')";
-            conDB.ExecuteSQL(sql);
-            clearInput();
-        }
-
-        //GUARDAR BUTTON
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-               
-           guardarPaciente();
-            /* guardarPedido();
-            ciTextBox.Text = "";
-            
-            string id_ultimo_pedido = obtenerUltimoPedido();
-            guardarDetallePedido(id_ultimo_pedido);
-            getPedidos();
-            readOrden();*/
-        }
-
-        //LIMPIAR DATOS
-        void clearInput()
-        {
-            nombreTextBox.Text = "";
-            apellidoTextBox.Text = "";
-            edadTextBox.Text = "";
-            fechaNacDatePicker.SelectedDate = null;
-        }
-
-        //ACTIVAR Y DESACTIVAR CARGA DE DATOS PERSONALES
-        private void activarDesactivarDatos(bool a, double b)
-        {
-            //nombre
-            nombreLabel.Opacity = b;
-            nombreTextBox.IsReadOnly = a;
-            nombreTextBox.Opacity = b;
-            //apellido
-            apellidoLabel.Opacity = b;
-            apellidoTextBox.IsReadOnly = a;
-            apellidoTextBox.Opacity = b;
-            //edad
-            edadLabel.Opacity = b;
-            edadTextBox.IsReadOnly = a;
-            edadTextBox.Opacity = b;
-            //sexo
-            sexoLabel.Opacity = b;
-            masculinoRadioButton.Opacity = b;
-            femeninoRadioButton.Opacity = b;
-            //fecha_nacimiento
-            fechaNacLabel.Opacity = b; 
-
-            if (a == true)
-            {
-                masculinoRadioButton.IsEnabled = false;
-                femeninoRadioButton.IsEnabled = false;
-                fechaNacDatePicker.IsEnabled = false;
-            }
-            else
-            {
-                masculinoRadioButton.IsEnabled = true;
-                femeninoRadioButton.IsEnabled = true;
-            }
-            
-            //fecha de nacimiento
-            if (a == false)
-            {
-                fechaNacDatePicker.IsEnabled = true;
-            }
-            
-        }
-
-        //BUSCAR BUTTON
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            
-            string ci = ciTextBox.Text;
-            int c = 0;
-            MySqlDataReader reade = conDB.ListSql("select nombre, apellido, edad, fecha_nacimiento, sexo from pacientes where ci=" + ci);
-
-            if (reade != null)
-            {
-                while (reade.Read())
-                {
-                    nombreTextBox.Text = reade.GetValue(0).ToString();
-                    apellidoTextBox.Text = reade.GetValue(1).ToString();
-                    edadTextBox.Text = reade.GetValue(2).ToString();
-                    fechaNacDatePicker.SelectedDate = Convert.ToDateTime(reade.GetValue(3).ToString());
-                    string s = reade.GetValue(4).ToString();
-                    if (s == "M") { masculinoRadioButton.IsChecked = true; } else { femeninoRadioButton.IsChecked = true; }
-
-                    c = 1;
-                    
-                }
-
-                if (c == 1) { activarDesactivarDatos(true, 1.0); } else { clearInput(); activarDesactivarDatos(false, 1.0); guardarButton.IsEnabled = true; }
-            }
-            else
-            {
-                MessageBox.Show("ERROR EN LA CARGA DE DATOS", "ERROR",MessageBoxButton.OK,MessageBoxImage.Error);
-            }
-        }
-    
-        
-
-        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            allOptionsHemograma(false);
-            allOptionsSangre(false);
-
-            hemogramaGroupBox.Visibility = Visibility.Hidden;
-            sangreGroupBox.Visibility = Visibility.Hidden;
-
-            opcion1CheckBox.IsChecked = false;
-            opcion2CheckBox.IsChecked = false;
-            servicioComboBox.SelectedValue = null;
-
-            guardarButton.Visibility = Visibility.Visible;
-
-            if (nombreTextBox.IsReadOnly==true)
-            {
-                guardarButton.IsEnabled = false;
-            }
-            ordenLabel.Opacity = 0.3;
-            ordenTextBox.IsEnabled = false;
-            servicioLabel.Opacity = 0.3;
-            servicioComboBox.IsEnabled = false;
-
-        }
-
-        private void CiTextBox_KeyUp(object sender, KeyEventArgs e)
-        {
-  
-            if (ciTextBox.Text == "")
-            {
-                
-                guardarButton.IsEnabled = false;
-                buscarButton.IsEnabled = false;
-            }
-            else
-            {
-                buscarButton.IsEnabled = true;
-            }
-            
-            guardarButton.IsEnabled = false;
-            activarDesactivarDatos(true, 0.3);
-            clearInput();
         }
 
 
@@ -451,13 +219,17 @@ namespace LaboratorioBogado
         private void getHistorialHemograma()
         {
             hemogramaDataGrid.Items.Clear();
-
-            MySqlDataReader reade = conDB.ListSql("select id, hemoglobina, hematocrito, gr, gb, plaquetas, eritro1h, eritro2h, neutrofilos, linfocitos, monocitos, eosinofilos,  basofilos, observacion from hemogramas where id=" + ciHistorialTextBox.Text);
+          
+            MySqlDataReader reade = conDB.ListSql("select id, hemoglobina, hematocrito, gr, gb, plaquetas, eritro1h, eritro2h, neutrofilos, linfocitos, monocitos, eosinofilos,  basofilos, observacion from hemogramas where ci=" + ciHistorialTextBox.Text);
+            Hemograma hem = new Hemograma();
+            hem.Fecha = "REFERENCIA";
+            hemogramaDataGrid.Items.Add(hem);
 
                 while (reade.Read())
                 {
                     visibilityHistorialHemograma(true);
 
+                
                     Hemograma h = new Hemograma();
                     h.Id = reade.GetValue(0).ToString();
                     h.Hemoglobina = reade.GetValue(1).ToString();
@@ -543,8 +315,26 @@ namespace LaboratorioBogado
                 pedidosDataGrid.Items.Add(p);
                 
             }
-            
+
         }
+
+        private void updatePedidos()
+        {
+            MySqlDataReader reade = conDB.ListSql("select p.id, p.orden, p.id_paciente, pac.nombre, pac.apellido, serv.nombre from pedidos as p inner join detallepedidos as dp  on p.id = dp.id_pedido inner join servicios as serv on p.servicio = serv.id inner join pacientes as pac on p.id_paciente = pac.ci inner join estudios as e on e.id = dp.id_analisis where p.fecha = '" + DateTime.Now.ToString("dd-MM-yyyy") + "' group by id; ");
+            while (reade.Read())
+            {
+                Pedido p = new Pedido();
+                p.Id = reade.GetValue(0).ToString();
+                p.Orden = reade.GetValue(1).ToString();
+                p.Ci = reade.GetValue(2).ToString();
+                p.Nombre = reade.GetValue(3).ToString();
+                p.Apellido = reade.GetValue(4).ToString();
+                p.Servicio = reade.GetValue(5).ToString();
+
+                pedidosDataGrid.Items.Add(p);
+            }
+        }
+        
 
         private void DetalleButton_Click(object sender, RoutedEventArgs e)
         {
@@ -573,264 +363,7 @@ namespace LaboratorioBogado
 
         /*----METODOS Y EVENTOS REPETITIVOS-----------*/
 
-        /*--------------SELECCION DE ESTUDIOS------------*/
-
-        //HEMOGRAMA OPCION 1 CHECK BOX
-        private void Opcion1CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            allOptionsHemograma(true);
-        }
-
-        private void Opcion1CheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            allOptionsHemograma(false);
-        }
-
-        //QUIMICA OPCION 2 CHECK BOX
-        private void Opcion2CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            allOptionsSangre(true);
-        }
-
-        private void Opcion2CheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            allOptionsSangre(false);
-        }
-
-        /*FUNCIONES PARA HABILITAR Y DESHABILITAR LAS OPCIONES INDIVIDUALES*/
-
-        /* HEMOGRAMA SUBOPCIONES*/
-        //HEMOGLOBINA
-        private void HemoglobinaCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            cargaDetalle("1");
-        }
-
-        private void HemoglobinaCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            removeDetalle("1");
-        }
-
-        //HEMATOCRITO
-        private void HematocritoCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            cargaDetalle("2");
-        }
-
-        private void HematocritoCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            removeDetalle("2");
-        }
-
-        //GLOBULOS ROJOS
-        private void GrCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            cargaDetalle("3");
-        }
-
-        private void GrCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            removeDetalle("3");
-        }
-
-        //GLOBULOS BLANCOS
-        private void GbCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            cargaDetalle("4");
-        }
-
-        private void GbCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            removeDetalle("4");
-        }
-
-        //PLAQUETAS
-        private void PlaquetasCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            cargaDetalle("5");
-        }
-
-        private void PlaquetasCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            removeDetalle("5");
-        }
-
-        //ERITROSEDIMENTACION
-        private void EritroCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            cargaDetalle("6");
-        }
-
-        private void EritroCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            removeDetalle("6");
-        }
-
-        //NEUTRÓFILOS
-        private void NeCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            cargaDetalle("7");
-        }
-
-        private void NeCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            removeDetalle("7");
-        }
-
-        //LINFOCITOS
-        private void LinCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            cargaDetalle("8");
-        }
-
-        private void LinCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            removeDetalle("8");
-        }
-
-        //MONOCITOS
-        private void MonoCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            cargaDetalle("9");
-        }
-
-        private void MonoCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            removeDetalle("9");
-        }
-
-        //EOSINOFILOS
-        private void EosCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            cargaDetalle("10");
-        }
-
-        private void EosCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            removeDetalle("10");
-        }
-
-        //BASOFILOS
-        private void BasoCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            cargaDetalle("11");
-        }
-
-        private void BasoCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            removeDetalle("11");
-        }
-
-        /*SUBOPCIONES ANALISIS DE SANGRE*/
-        //GLICEMIA
-        private void GlicemiaCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            cargaDetalle("12");
-        }
-
-        private void GlicemiaCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            removeDetalle("12");
-        }
-
-        //UREA
-        private void UreaCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            cargaDetalle("13");
-        }
-
-        private void UreaCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            removeDetalle("13");
-        }
-
-        //ACIDO URICO
-        private void AcidouCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            cargaDetalle("14");
-        }
-
-        private void AcidouCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            removeDetalle("14");
-        }
-
-        //COLESTEROL TOTAL
-        private void ColesterolCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            cargaDetalle("15");
-        }
-
-        private void ColesterolCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            removeDetalle("15");
-        }
-
-        //TRIGLICÉRIDOS
-        private void TrigliceridosCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            cargaDetalle("16");
-        }
-
-        private void TrigliceridosCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            removeDetalle("16");
-        }
-
-        //CREATININA
-        private void CreatininaCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            cargaDetalle("17");
-        }
-
-        private void CreatininaCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            removeDetalle("17");
-        }
-
-        //GOT
-        private void GotCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            cargaDetalle("18");
-        }
-
-        private void GotCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            removeDetalle("18");
-        }
-
-        //GPT
-        private void GptCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            cargaDetalle("19");
-        }
-
-        private void GptCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            removeDetalle("19");
-        }
-
-        //FOSFATASA ALCALINA
-        private void FosfatasaCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            cargaDetalle("20");
-        }
-
-        private void FosfatasaCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            removeDetalle("20");
-        }
-
-        //AMILASA
-        private void AmilasaCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            cargaDetalle("21");
-        }
-
-        private void AmilasaCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            removeDetalle("21");
-        }
+       
 
         private void FiltrarButton_Click(object sender, RoutedEventArgs e)
         {
@@ -913,7 +446,10 @@ namespace LaboratorioBogado
 
                 pedidosDataGrid.Items.Add(p);
             }
+
         }
+
+        
 
         private void filterEstudios(string fecha)
         {
@@ -963,7 +499,9 @@ namespace LaboratorioBogado
 
         private void EstudiosButton_Click(object sender, RoutedEventArgs e)
         {
-            estudiosTabItem.IsSelected = true;
+            updatePedidos();
+            pedidosTabItem.IsSelected = true;
+            
         }
 
         private void NuevoPacienteButton_Click(object sender, RoutedEventArgs e)
@@ -977,6 +515,20 @@ namespace LaboratorioBogado
             PedidosPage pp = new PedidosPage();
             pp.ShowDialog();
         }
+
+        
+
+        
+
+
+
+
+
+
+
+
+
+
 
 
 

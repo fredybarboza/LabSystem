@@ -8,6 +8,7 @@ namespace LaboratorioBogado.Estudios
 {
     class Hemograma
     {
+        private string fecha;
         private string id;
         private string hemoglobina;
         private string hematocrito;
@@ -23,6 +24,7 @@ namespace LaboratorioBogado.Estudios
         private string basofilos;
         private string observacion;
 
+        public string Fecha { get { return this.fecha; } set { this.fecha = value; } }
         public string Id { get { return this.id; } set { this.id = value; } }
 
         public string Hemoglobina { get { return this.hemoglobina; } set { this.hemoglobina = value; } }

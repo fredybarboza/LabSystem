@@ -6,115 +6,65 @@
         xmlns:local="clr-namespace:LaboratorioBogado"
         mc:Ignorable="d"
         Title="MainWindow" Height="1811" Width="1550.65" WindowStartupLocation="CenterScreen" WindowState="Maximized" Background="White">
-    <ScrollViewer>
 
-        <TabControl x:Name="mainTabControl" HorizontalAlignment="Left" Height="1770" VerticalAlignment="Top" Width="1487" BorderBrush="{x:Null}" HorizontalContentAlignment="Stretch">
-            <TabItem Header="Registro De Pacientes">
-                <Grid x:Name="neuCheckBox" Margin="0,0,3,-4" Background="#FFE4E4E4">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="850*"/>
-                        <ColumnDefinition Width="267*"/>
-                    </Grid.ColumnDefinitions>
-                    <GroupBox x:Name="hemogramaGroupBox" Header="HEMOGRAMA" HorizontalAlignment="Left" Height="316" Margin="123,669,0,0" VerticalAlignment="Top" Width="230" Background="#FFD3CECE">
-                        <Grid x:Name="hrmogramaGroupBox" HorizontalAlignment="Left" Height="294" VerticalAlignment="Top" Width="220" Margin="0,0,-2,0" Background="#FFD3CECE">
-                            <CheckBox x:Name="opcion1CheckBox" Content="HEMOGRAMA" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="Opcion1CheckBox_Checked" Height="22" Width="143" Unchecked="Opcion1CheckBox_Unchecked"/>
-                            <CheckBox x:Name="hemoglobinaCheckBox" Content="Hemoglobina" HorizontalAlignment="Left" Margin="33,32,0,0" VerticalAlignment="Top" Unchecked="HemoglobinaCheckBox_Unchecked" Checked="HemoglobinaCheckBox_Checked"/>
-                            <CheckBox x:Name="hematocritoCheckBox" Content="Hematocrito" HorizontalAlignment="Left" Margin="33,52,0,0" VerticalAlignment="Top" Checked="HematocritoCheckBox_Checked" Unchecked="HematocritoCheckBox_Unchecked"/>
-                            <CheckBox x:Name="grCheckBox" Content="Glóbulos  Rojos" HorizontalAlignment="Left" Margin="33,72,0,0" VerticalAlignment="Top" Width="122" Checked="GrCheckBox_Checked" Unchecked="GrCheckBox_Unchecked"/>
-                            <CheckBox x:Name="gbCheckBox" Content="Glóbulos Blancos" HorizontalAlignment="Left" Margin="33,92,0,0" VerticalAlignment="Top" Width="122" Checked="GbCheckBox_Checked" Unchecked="GbCheckBox_Unchecked"/>
-                            <CheckBox x:Name="plaquetasCheckBox" Content="Plaquetas" HorizontalAlignment="Left" Margin="33,112,0,0" VerticalAlignment="Top" Checked="PlaquetasCheckBox_Checked" Unchecked="PlaquetasCheckBox_Unchecked"/>
-                            <CheckBox x:Name="eritroCheckBox" Content="Eritrosedimentación" HorizontalAlignment="Left" Margin="33,132,0,0" VerticalAlignment="Top" Checked="EritroCheckBox_Checked" Unchecked="EritroCheckBox_Unchecked"/>
-                            <Label Content="FORMULA LEUCOCITARIA" HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top" FontSize="11"/>
-                            <CheckBox x:Name="neCheckBox" Content="Neutrófilos" HorizontalAlignment="Left" Margin="33,177,0,0" VerticalAlignment="Top" Checked="NeCheckBox_Checked" Unchecked="NeCheckBox_Unchecked"/>
-                            <CheckBox x:Name="linCheckBox" Content="Linfocitos" HorizontalAlignment="Left" Margin="33,197,0,0" VerticalAlignment="Top" Checked="LinCheckBox_Checked" Unchecked="LinCheckBox_Unchecked"/>
-                            <CheckBox x:Name="monoCheckBox" Content="Monocitos" HorizontalAlignment="Left" Margin="33,217,0,0" VerticalAlignment="Top" Checked="MonoCheckBox_Checked" Unchecked="MonoCheckBox_Unchecked"/>
-                            <CheckBox x:Name="eosCheckBox" Content="Eosinófilos" HorizontalAlignment="Left" Margin="33,237,0,0" VerticalAlignment="Top" Checked="EosCheckBox_Checked" Unchecked="EosCheckBox_Unchecked"/>
-                            <CheckBox x:Name="basoCheckBox" Content="Basófilos" HorizontalAlignment="Left" Margin="33,257,0,0" VerticalAlignment="Top" Checked="BasoCheckBox_Checked" Unchecked="BasoCheckBox_Unchecked"/>
-                        </Grid>
-                    </GroupBox>
-                    <GroupBox x:Name="registroGroupBox" Header="" HorizontalAlignment="Left" Height="425" Margin="133,271,0,0" VerticalAlignment="Top" Width="944" Background="#FFD3CECE" BorderBrush="{x:Null}">
-                        <Grid HorizontalAlignment="Left" Height="404" VerticalAlignment="Top" Width="933" Margin="0,0,-12,-1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="854*"/>
-                                <ColumnDefinition Width="79*"/>
-                            </Grid.ColumnDefinitions>
-                            <Label Content="REGISTRO DE PACIENTES Y PEDIDOS" HorizontalAlignment="Left" Margin="265,10,0,0" VerticalAlignment="Top" FontSize="20" Width="419"/>
-                            <Label x:Name="ciLabel" Content="C.I" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="-3.179,0.097"/>
-                            <TextBox x:Name="ciTextBox" HorizontalAlignment="Left" Height="40" Margin="209,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" FontSize="16" KeyUp="CiTextBox_KeyUp"/>
-                            <Button x:Name="buscarButton" Content="Buscar" HorizontalAlignment="Left" Margin="474,70,0,0" VerticalAlignment="Top" Width="58" Height="40" FontWeight="Bold" FontSize="16" BorderBrush="#FF999595" Click="Button_Click_1"/>
-                            <Label x:Name="nombreLabel" Content="NOMBRE" HorizontalAlignment="Left" Margin="10,142,0,0" VerticalAlignment="Top" FontSize="16"/>
-                            <TextBox x:Name="nombreTextBox" HorizontalAlignment="Left" Height="40" Margin="209,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" FontSize="16"/>
-                            <Label x:Name="apellidoLabel" Content="APELLIDO" HorizontalAlignment="Left" Margin="10,207,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="4.675,0.161"/>
-                            <TextBox x:Name="apellidoTextBox" HorizontalAlignment="Left" Height="40" Margin="209,194,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" FontSize="16"/>
-                            <Label x:Name="fechaLabel" Content="FECHA " HorizontalAlignment="Left" Margin="586,70,0,0" VerticalAlignment="Top" Height="45" FontSize="16" RenderTransformOrigin="0.597,0.556"/>
-                            <Label x:Name="FechaActualLabel" Content="" HorizontalAlignment="Left" Margin="677,70,0,0" VerticalAlignment="Top" Width="144" FontWeight="Bold" FontSize="16"/>
-                            <Label x:Name="fechaNacLabel" Content="FECHA DE NACIMIENTO" HorizontalAlignment="Left" Margin="10,253,0,0" VerticalAlignment="Top" FontSize="16"/>
-                            <DatePicker x:Name="fechaNacDatePicker" HorizontalAlignment="Left" Margin="209,261,0,0" VerticalAlignment="Top" Width="265"/>
-                            <Label x:Name="edadLabel" Content="EDAD" HorizontalAlignment="Left" Margin="10,313,0,0" VerticalAlignment="Top" FontSize="16"/>
-                            <TextBox x:Name="edadTextBox" HorizontalAlignment="Left" Height="31" Margin="209,304,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="147"/>
-                            <Label x:Name="sexoLabel" Content="SEXO" HorizontalAlignment="Left" Margin="10,354,0,0" VerticalAlignment="Top" FontSize="16"/>
-                            <RadioButton x:Name="femeninoRadioButton" Content="FEMENINO" HorizontalAlignment="Left" Margin="209,360,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.615,0.933" FontWeight="Bold" FontSize="16" Height="21"/>
-                            <RadioButton x:Name="masculinoRadioButton" Content="MASCULINO" HorizontalAlignment="Left" Margin="332,361,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-                            <Label x:Name="ordenLabel" Content="ORDEN" HorizontalAlignment="Left" Margin="571,675,0,-302" VerticalAlignment="Top" FontSize="16"/>
-                            <TextBox x:Name="ordenTextBox" IsReadOnly="True" HorizontalAlignment="Left" Height="31" Margin="666,675,0,-302" TextWrapping="Wrap" VerticalAlignment="Top" Width="72" FontSize="16" TextAlignment="Center"/>
-                            <Label x:Name="servicioLabel" Content="SERVICIO" HorizontalAlignment="Left" Margin="571,721,0,-348" VerticalAlignment="Top" FontSize="16"/>
-                            <ComboBox x:Name="servicioComboBox" HorizontalAlignment="Left" Margin="666,721,0,-348" VerticalAlignment="Top" Width="221" Height="31" FontSize="16" Grid.ColumnSpan="2"/>
-                            <Button x:Name="guardarButton" Content="GUARDAR" HorizontalAlignment="Left" Margin="791,358,0,0" VerticalAlignment="Top" Width="116" Height="34" Click="Button_Click" Background="#FF9BFB7E" FontSize="16" Grid.ColumnSpan="2"/>
-                            <Separator HorizontalAlignment="Left" Height="31" Margin="586,106,0,0" VerticalAlignment="Top" Width="321" Grid.ColumnSpan="2"/>
-                            <Button x:Name="agregarPedidoButton" Content="+" HorizontalAlignment="Left" Margin="731,133,0,0" VerticalAlignment="Top" Width="68" Height="31" FontSize="16" Padding="1,1,1,5" Click="AgregarPedidoButton_Click"/>
-                            <Label Content="AGREGAR PEDIDO" HorizontalAlignment="Left" Margin="586,133,0,0" VerticalAlignment="Top" FontSize="16"/>
-                            <Button Content="Borrar Solicitud" HorizontalAlignment="Left" Margin="808,169,0,0" VerticalAlignment="Top" Width="99" Background="#FFFD8C8C" RenderTransformOrigin="1.111,0.3" Grid.ColumnSpan="2"/>
-                            <Button Content="CANCELAR" HorizontalAlignment="Left" Margin="666,358,0,0" VerticalAlignment="Top" Width="116" Height="34" FontSize="16" Background="#FFFDAFAF" Click="Button_Click_2"/>
-                            <Button x:Name="solicitudButton" Content="[ SOLICITUD DE ANALISIS AGREGADA ]" HorizontalAlignment="Left" Margin="586,169,0,0" VerticalAlignment="Top" Width="216" Background="{x:Null}" BorderBrush="{x:Null}" Click="SolicitudButton_Click"/>
-                        </Grid>
-                    </GroupBox>
-                    <GroupBox x:Name="sangreGroupBox" Header="ANALISIS DE SANGRE" HorizontalAlignment="Left" Height="316" Margin="369,669,0,0" VerticalAlignment="Top" Width="230">
-                        <Grid HorizontalAlignment="Left" Height="296" VerticalAlignment="Top" Width="220" Margin="0,0,-2,-2">
-                            <CheckBox x:Name="opcion2CheckBox" Content="QUIMICA" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="Opcion2CheckBox_Checked" Unchecked="Opcion2CheckBox_Unchecked"/>
-                            <CheckBox x:Name="glicemiaCheckBox" Content="Glicemia" HorizontalAlignment="Left" Margin="35,30,0,0" VerticalAlignment="Top" Checked="GlicemiaCheckBox_Checked" Unchecked="GlicemiaCheckBox_Unchecked"/>
-                            <CheckBox x:Name="ureaCheckBox" Content="Urea" HorizontalAlignment="Left" Margin="35,50,0,0" VerticalAlignment="Top" Checked="UreaCheckBox_Checked" Unchecked="UreaCheckBox_Unchecked"/>
-                            <CheckBox x:Name="acidouCheckBox" Content="Ácido Úrico" HorizontalAlignment="Left" Margin="35,70,0,0" VerticalAlignment="Top" Checked="AcidouCheckBox_Checked" Unchecked="AcidouCheckBox_Unchecked"/>
-                            <CheckBox x:Name="colesterolCheckBox" Content="Colesterol Total" HorizontalAlignment="Left" Margin="35,90,0,0" VerticalAlignment="Top" Checked="ColesterolCheckBox_Checked" Unchecked="ColesterolCheckBox_Unchecked"/>
-                            <CheckBox x:Name="trigliceridosCheckBox" Content="Triglicéridos" HorizontalAlignment="Left" Margin="35,110,0,0" VerticalAlignment="Top" Checked="TrigliceridosCheckBox_Checked" Unchecked="TrigliceridosCheckBox_Unchecked"/>
-                            <CheckBox x:Name="creatininaCheckBox" Content="Creatinina" HorizontalAlignment="Left" Margin="35,130,0,0" VerticalAlignment="Top" Checked="CreatininaCheckBox_Checked" Unchecked="CreatininaCheckBox_Unchecked"/>
-                            <CheckBox x:Name="gotCheckBox" Content="G.O.T" HorizontalAlignment="Left" Margin="35,150,0,0" VerticalAlignment="Top" Checked="GotCheckBox_Checked" Unchecked="GotCheckBox_Unchecked"/>
-                            <CheckBox x:Name="gptCheckBox" Content="G.P.T" HorizontalAlignment="Left" Margin="35,170,0,0" VerticalAlignment="Top" Checked="GptCheckBox_Checked" Unchecked="GptCheckBox_Unchecked"/>
-                            <CheckBox x:Name="fosfatasaCheckBox" Content="Fosfatasa Alcalina" HorizontalAlignment="Left" Margin="35,191,0,0" VerticalAlignment="Top" Checked="FosfatasaCheckBox_Checked" Unchecked="FosfatasaCheckBox_Unchecked"/>
-                            <CheckBox x:Name="amilasaCheckBox" Content="Amilasa" HorizontalAlignment="Left" Margin="35,211,0,0" VerticalAlignment="Top" Checked="AmilasaCheckBox_Checked" Unchecked="AmilasaCheckBox_Unchecked"/>
-                        </Grid>
-                    </GroupBox>
-                    <Button x:Name="nuevoPacienteButton" HorizontalAlignment="Left" Margin="389,82,0,0" VerticalAlignment="Top" Width="210" FontSize="36" Height="97" Click="NuevoPacienteButton_Click">
-                        <Grid Height="100" Width="229">
-                            <Image HorizontalAlignment="Left" Source="/Image/user.png
+    <TabControl x:Name="mainTabControl" HorizontalAlignment="Left" Height="1770" VerticalAlignment="Top" Width="1487" BorderBrush="{x:Null}" HorizontalContentAlignment="Stretch">
+        <TabItem Header="INICIO">
+            <Grid x:Name="neuCheckBox" Margin="0,0,3,-4" Background="#FFE4E4E4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="850*"/>
+                    <ColumnDefinition Width="267*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="nuevoPacienteButton" HorizontalAlignment="Left" Margin="389,82,0,0" VerticalAlignment="Top" Width="210" FontSize="36" Height="97" Click="NuevoPacienteButton_Click">
+                    <Grid Height="100" Width="229">
+                        <Image HorizontalAlignment="Left" Source="/Image/user.png
                                    " Height="78" VerticalAlignment="Top" Width="100" Margin="10,10,0,0"/>
-                            <Label Content=" NUEVO&#xA;PACIENTE" HorizontalAlignment="Left" Margin="89,10,0,0" VerticalAlignment="Top" Height="78" FontSize="24"/>
-                        </Grid>
-                    </Button>
-                    <Button x:Name="nuevoPedidoButton" HorizontalAlignment="Left" Margin="625,82,0,0" VerticalAlignment="Top" Width="210" Height="97" FontSize="24" Click="NuevoPedidoButton_Click">
-                        <Grid Height="97" Width="204">
-                            <Image HorizontalAlignment="Left" Source="/Image/plus.png" Height="77" VerticalAlignment="Top" Width="100" Margin="10,10,0,0"/>
-                            <Label Content="NUEVO&#xD;&#xA;PEDIDO" HorizontalAlignment="Left" Margin="105,10,0,0" VerticalAlignment="Top"/>
-                        </Grid>
-                    </Button>
-                    <Button x:Name="estudiosButton" HorizontalAlignment="Left" Margin="389,207,0,0" VerticalAlignment="Top" Width="210" Click="EstudiosButton_Click" Height="97">
-                        <Grid Height="100" Width="200">
-                            <Image HorizontalAlignment="Left" Source="/Image/estudios.png" Height="80" VerticalAlignment="Top" Width="100" Margin="10,10,0,0"/>
-                            <Label Content="PEDIDOS" HorizontalAlignment="Left" Margin="90,26,0,0" VerticalAlignment="Top" FontSize="24"/>
-                        </Grid>
-                    </Button>
-                    <Label Content="Label" HorizontalAlignment="Left" Margin="831,-43,0,0" VerticalAlignment="Top"/>
-                    <Button HorizontalAlignment="Left" Margin="625,207,0,0" VerticalAlignment="Top" Width="210" Height="97">
-                        <Grid Height="100" Width="204">
-                            <Image HorizontalAlignment="Left" Source="/Image/historial.png" Height="80" VerticalAlignment="Top" Width="73" Margin="10,10,0,0"/>
-                            <Label Content="HISTORIAL" HorizontalAlignment="Left" Margin="83,28,0,0" VerticalAlignment="Top" FontSize="24"/>
-                        </Grid>
-                    </Button>
-                </Grid>
+                        <Label Content=" NUEVO&#xA;PACIENTE" HorizontalAlignment="Left" Margin="89,10,0,0" VerticalAlignment="Top" Height="78" FontSize="24"/>
+                    </Grid>
+                </Button>
+                <Button x:Name="nuevoPedidoButton" HorizontalAlignment="Left" Margin="625,82,0,0" VerticalAlignment="Top" Width="210" Height="97" FontSize="24" Click="NuevoPedidoButton_Click">
+                    <Grid Height="97" Width="204">
+                        <Image HorizontalAlignment="Left" Source="/Image/plus.png" Height="77" VerticalAlignment="Top" Width="100" Margin="10,10,0,0"/>
+                        <Label Content="NUEVO&#xD;&#xA;PEDIDO" HorizontalAlignment="Left" Margin="105,10,0,0" VerticalAlignment="Top"/>
+                    </Grid>
+                </Button>
+                <Button x:Name="estudiosButton" HorizontalAlignment="Left" Margin="389,207,0,0" VerticalAlignment="Top" Width="210" Click="EstudiosButton_Click" Height="97">
+                    <Grid Height="100" Width="200">
+                        <Image HorizontalAlignment="Left" Source="/Image/estudios.png" Height="80" VerticalAlignment="Top" Width="100" Margin="10,10,0,0"/>
+                        <Label Content="PEDIDOS" HorizontalAlignment="Left" Margin="90,26,0,0" VerticalAlignment="Top" FontSize="24"/>
+                    </Grid>
+                </Button>
+                <Label Content="Label" HorizontalAlignment="Left" Margin="831,-43,0,0" VerticalAlignment="Top"/>
+                <Button HorizontalAlignment="Left" Margin="625,207,0,0" VerticalAlignment="Top" Width="210" Height="97">
+                    <Grid Height="100" Width="204">
+                        <Image HorizontalAlignment="Left" Source="/Image/historial.png" Height="80" VerticalAlignment="Top" Width="73" Margin="10,10,0,0"/>
+                        <Label Content="HISTORIAL" HorizontalAlignment="Left" Margin="83,28,0,0" VerticalAlignment="Top" FontSize="24"/>
+                    </Grid>
+                </Button>
+            </Grid>
 
-            </TabItem>
-            <TabItem x:Name="estudiosTabItem" Header="ESTUDIOS">
-                <Grid Background="#FFD1D1D1">
-                    <DataGrid x:Name="pedidosDataGrid" AlternatingRowBackground="LightBlue"  HorizontalAlignment="Left" Height="496" Margin="147,177,0,0" VerticalAlignment="Top" Width="843" BorderBrush="{x:Null}" Background="#FFD1D1D1" GridLinesVisibility="None">
+        </TabItem>
+        <TabItem x:Name="pedidosTabItem" Header="PEDIDOS" Visibility="Collapsed">
+            <Grid Background="#FFD1D1D1">
+                <Grid HorizontalAlignment="Left" Height="1742" Margin="204,0,0,0" VerticalAlignment="Top" Width="889" Background="#FFBBB7B7">
+                    <Grid.Effect>
+                        <DropShadowEffect/>
+                    </Grid.Effect>
+                    <Label Content="PEDIDOS" HorizontalAlignment="Left" Margin="403,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                    <Border BorderBrush="#FF9C9C9C" BorderThickness="1" HorizontalAlignment="Left" Height="45" Margin="20,61,0,0" VerticalAlignment="Top" Width="843" CornerRadius="5">
+                        <Grid>
+                            <ComboBox x:Name="filtrarServicioComboBox" HorizontalAlignment="Left" Margin="82,11,0,0" VerticalAlignment="Top" Width="157"/>
+                            <Label Content="SERVICIO" HorizontalAlignment="Left" Margin="22,9,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.517,1.885"/>
+                            <Label Content="ESTUDIO" HorizontalAlignment="Left" Margin="275,9,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.31,0.462"/>
+                            <ComboBox x:Name="filtrarEstudioComboBox" HorizontalAlignment="Left" Margin="338,11,0,0" VerticalAlignment="Top" Width="157"/>
+                            <Button x:Name="filtrarButton" Content="FILTRAR" HorizontalAlignment="Left" Margin="753,0,0,0" VerticalAlignment="Top" Width="88" Height="43" Click="FiltrarButton_Click"/>
+                            <DatePicker x:Name="filtrarFechaDatePecker" HorizontalAlignment="Left" Margin="569,11,0,0" VerticalAlignment="Top" Width="158"/>
+                            <Label Content="FECHA" HorizontalAlignment="Left" Margin="518,11,0,0" VerticalAlignment="Top"/>
+                        </Grid>
+                    </Border>
+                    <TextBox x:Name="fechaPedidosTextBox" IsReadOnly="True" HorizontalAlignment="Left" Height="30" Margin="140,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="FECHA: " HorizontalAlignment="Left" Margin="20,127,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
+                    <Button x:Name="mostrarTodoButton" Content="MOSTRAR TODO" HorizontalAlignment="Left" Margin="736,126,0,0" VerticalAlignment="Top" Width="127" Height="32" Background="#FFDDDDDD" BorderBrush="#FF8F8E8E" Click="MostrarTodoButton_Click"/>
+                    <DataGrid x:Name="pedidosDataGrid" AlternatingRowBackground="LightBlue"  HorizontalAlignment="Left" Height="455" Margin="20,176,0,0" VerticalAlignment="Top" Width="843" BorderBrush="{x:Null}" Background="#FFD1D1D1" GridLinesVisibility="None">
                         <DataGrid.Columns>
                             <DataGridTextColumn Width="100" Header="ID" Binding="{Binding Id}"/>
                             <DataGridTextColumn Width="100" Header="ORDEN"/>
@@ -141,70 +91,55 @@
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Border BorderBrush="#FF9C9C9C" BorderThickness="1" HorizontalAlignment="Left" Height="45" Margin="147,64,0,0" VerticalAlignment="Top" Width="843" CornerRadius="5">
-                        <Grid>
-                            <ComboBox x:Name="filtrarServicioComboBox" HorizontalAlignment="Left" Margin="82,11,0,0" VerticalAlignment="Top" Width="157"/>
-                            <Label Content="SERVICIO" HorizontalAlignment="Left" Margin="22,9,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.517,1.885"/>
-                            <Label Content="ESTUDIO" HorizontalAlignment="Left" Margin="275,9,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.31,0.462"/>
-                            <ComboBox x:Name="filtrarEstudioComboBox" HorizontalAlignment="Left" Margin="338,11,0,0" VerticalAlignment="Top" Width="157"/>
-                            <Button x:Name="filtrarButton" Content="FILTRAR" HorizontalAlignment="Left" Margin="753,0,0,0" VerticalAlignment="Top" Width="88" Height="43" Click="FiltrarButton_Click"/>
-                            <DatePicker x:Name="filtrarFechaDatePecker" HorizontalAlignment="Left" Margin="569,11,0,0" VerticalAlignment="Top" Width="158"/>
-                            <Label Content="FECHA" HorizontalAlignment="Left" Margin="518,11,0,0" VerticalAlignment="Top"/>
-                        </Grid>
-                    </Border>
-                    <Label Content="FECHA: " HorizontalAlignment="Left" Margin="147,127,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
-                    <Button x:Name="mostrarTodoButton" Content="MOSTRAR TODO" HorizontalAlignment="Left" Margin="863,127,0,0" VerticalAlignment="Top" Width="127" Height="32" Background="#FFDDDDDD" BorderBrush="#FF8F8E8E" Click="MostrarTodoButton_Click"/>
-                    <TextBox x:Name="fechaPedidosTextBox" IsReadOnly="True" HorizontalAlignment="Left" Height="30" Margin="230,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                    <Label Content="PEDIDOS" HorizontalAlignment="Left" Margin="513,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                </Grid>
 
-                </Grid>
-            </TabItem>
-            <TabItem Header="Historial">
-                <Grid Background="#FFE5E5E5" Margin="0,0,-1,-15">
-                    <Label Content="HISTORIAL DE PACIENTES" HorizontalAlignment="Left" Margin="479,0,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" RenderTransformOrigin="0.688,0.622"/>
-                    <Label Content="C.I" HorizontalAlignment="Left" Margin="440,53,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
-                    <TextBox x:Name="ciHistorialTextBox" HorizontalAlignment="Left" Height="34" Margin="479,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" FontSize="20" KeyUp="CiHistorialTextBox_KeyUp"/>
-                    <Button x:Name="buttonBuscarHistorial" IsEnabled="False" Content="BUSCAR" HorizontalAlignment="Left" Margin="676,53,0,0" VerticalAlignment="Top" Width="75" FontWeight="Bold" FontSize="16" Height="34" BorderBrush="#FF939090" Click="ButtonBuscarHistorial_Click"/>
-                    <TabControl x:Name="historialTabControl" HorizontalAlignment="Left" Height="989" Margin="10,222,0,0" VerticalAlignment="Top" Width="1374">
-                        <TabItem x:Name="hemogramaHistorialTabItem" Header="HEMOGRAMA">
-                            <Grid x:Name="gridHemogramaHistorial" Background="#FFE5E5E5">
-                                <DataGrid x:Name="hemogramaDataGrid" HorizontalAlignment="Left" Height="438" Margin="10,0,0,0" VerticalAlignment="Top" Width="1282" BorderBrush="{x:Null}" Background="#FFE5E5E5">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="FECHA"/>
-                                        <DataGridTextColumn Header="HEMOGLOBINA  g/dl" Binding="{Binding Hemoglobina}"/>
-                                        <DataGridTextColumn Header="HEMATOCRITO  %" Binding="{Binding Hematocrito}"/>
-                                        <DataGridTextColumn Header="G. ROJOS  mm³" Binding="{Binding Gr}"/>
-                                        <DataGridTextColumn Header="G. BLANCOS  mm³" Binding="{Binding Gb}"/>
-                                        <DataGridTextColumn Header="PLAQUETAS  mm³" Binding="{Binding Plaquetas}"/>
-                                        <DataGridTextColumn Header="ERITRO 1° H. mm" Binding="{Binding Eritro1h}"/>
-                                        <DataGridTextColumn Header="ERITRO 2° H. mm" Binding="{Binding Eritro2h}"/>
-                                        <DataGridTextColumn Header="NEUTROFILOS %" Binding="{Binding Neutrofilos}"/>
-                                        <DataGridTextColumn Header="LINFOCITOS %" Binding="{Binding Linfocitos}"/>
-                                        <DataGridTextColumn Header="MONOCITOS %" Binding="{Binding Monocitos}"/>
-                                        <DataGridTextColumn Header="EOSINOFILOS %" Binding="{Binding Eosinofilos}"/>
-                                        <DataGridTextColumn Header="BASOFILOS %" Binding="{Binding Basofilos}"/>
-                                        <DataGridTextColumn Header="OBSERVACION" Binding="{Binding Observacion}"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="ORINA Y SEDIMENTO">
-                            <Grid Background="#FFE5E5E5"/>
-                        </TabItem>
-                    </TabControl>
-                    <Separator HorizontalAlignment="Left" Height="17" Margin="10,92,0,0" VerticalAlignment="Top" Width="1462"/>
-                    <Label Content="NOMBRE:" HorizontalAlignment="Left" Margin="19,109,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-                    <Label Content="APELLIDO:" HorizontalAlignment="Left" Margin="19,157,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-                    <TextBox x:Name="nombreHistorialTextBox" IsReadOnly="True" HorizontalAlignment="Left" Height="26" Margin="112,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187"/>
-                    <TextBox x:Name="apellidoHistorialTextBox" IsReadOnly="True" HorizontalAlignment="Left" Height="26" Margin="112,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187"/>
-                    <Label Content="EDAD:" HorizontalAlignment="Left" Margin="335,157,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-                    <TextBox x:Name="edadHistorialTextBox" IsReadOnlyCaretVisible="True" HorizontalAlignment="Left" Height="26" Margin="545,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="96"/>
-                    <Label Content="FECHA DE NACIMIENTO:" HorizontalAlignment="Left" Margin="335,109,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-                    <TextBox x:Name="fechaNacHistorialTextBox" IsReadOnly="True" HorizontalAlignment="Left" Height="26" Margin="545,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166"/>
-                    <Separator HorizontalAlignment="Left" Height="29" Margin="10,193,0,0" VerticalAlignment="Top" Width="1462"/>
-                </Grid>
-            </TabItem>
-        </TabControl>
-    </ScrollViewer>
+            </Grid>
+        </TabItem>
+        <TabItem Header="HISTORIAL">
+            <Grid Background="#FFE5E5E5" Margin="0,0,-1,-15">
+                <Label Content="HISTORIAL DE PACIENTES" HorizontalAlignment="Left" Margin="479,0,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" RenderTransformOrigin="0.688,0.622"/>
+                <Label Content="C.I" HorizontalAlignment="Left" Margin="440,53,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+                <TextBox x:Name="ciHistorialTextBox" HorizontalAlignment="Left" Height="34" Margin="479,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" FontSize="20" KeyUp="CiHistorialTextBox_KeyUp"/>
+                <Button x:Name="buttonBuscarHistorial" IsEnabled="False" Content="BUSCAR" HorizontalAlignment="Left" Margin="676,53,0,0" VerticalAlignment="Top" Width="75" FontWeight="Bold" FontSize="16" Height="34" BorderBrush="#FF939090" Click="ButtonBuscarHistorial_Click"/>
+                <TabControl x:Name="historialTabControl" HorizontalAlignment="Left" Height="989" Margin="10,222,0,0" VerticalAlignment="Top" Width="1374">
+                    <TabItem x:Name="hemogramaHistorialTabItem" Header="HEMOGRAMA">
+                        <Grid x:Name="gridHemogramaHistorial" Background="#FFE5E5E5">
+                            <DataGrid x:Name="hemogramaDataGrid" HorizontalAlignment="Left" Height="438" Margin="10,10,0,0" VerticalAlignment="Top" Width="1282" BorderBrush="{x:Null}" Background="#FFE5E5E5">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="FECHA" Binding="{Binding Fecha}"/>
+                                    <DataGridTextColumn Header="HEMOGLOBINA  g/dl" Binding="{Binding Hemoglobina}"/>
+                                    <DataGridTextColumn Header="HEMATOCRITO  %" Binding="{Binding Hematocrito}"/>
+                                    <DataGridTextColumn Header="G. ROJOS  mm³" Binding="{Binding Gr}"/>
+                                    <DataGridTextColumn Header="G. BLANCOS  mm³" Binding="{Binding Gb}"/>
+                                    <DataGridTextColumn Header="PLAQUETAS  mm³" Binding="{Binding Plaquetas}"/>
+                                    <DataGridTextColumn Header="ERITRO 1° H. mm" Binding="{Binding Eritro1h}"/>
+                                    <DataGridTextColumn Header="ERITRO 2° H. mm" Binding="{Binding Eritro2h}"/>
+                                    <DataGridTextColumn Header="NEUTROFILOS %" Binding="{Binding Neutrofilos}"/>
+                                    <DataGridTextColumn Header="LINFOCITOS %" Binding="{Binding Linfocitos}"/>
+                                    <DataGridTextColumn Header="MONOCITOS %" Binding="{Binding Monocitos}"/>
+                                    <DataGridTextColumn Header="EOSINOFILOS %" Binding="{Binding Eosinofilos}"/>
+                                    <DataGridTextColumn Header="BASOFILOS %" Binding="{Binding Basofilos}"/>
+                                    <DataGridTextColumn Header="OBSERVACION" Binding="{Binding Observacion}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="ORINA Y SEDIMENTO">
+                        <Grid Background="#FFE5E5E5"/>
+                    </TabItem>
+                </TabControl>
+                <Separator HorizontalAlignment="Left" Height="17" Margin="10,92,0,0" VerticalAlignment="Top" Width="1462"/>
+                <Label Content="NOMBRE:" HorizontalAlignment="Left" Margin="19,109,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                <Label Content="APELLIDO:" HorizontalAlignment="Left" Margin="19,157,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                <TextBox x:Name="nombreHistorialTextBox" IsReadOnly="True" HorizontalAlignment="Left" Height="26" Margin="112,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187"/>
+                <TextBox x:Name="apellidoHistorialTextBox" IsReadOnly="True" HorizontalAlignment="Left" Height="26" Margin="112,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187"/>
+                <Label Content="EDAD:" HorizontalAlignment="Left" Margin="335,157,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                <TextBox x:Name="edadHistorialTextBox" IsReadOnlyCaretVisible="True" HorizontalAlignment="Left" Height="26" Margin="545,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="96"/>
+                <Label Content="FECHA DE NACIMIENTO:" HorizontalAlignment="Left" Margin="335,109,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                <TextBox x:Name="fechaNacHistorialTextBox" IsReadOnly="True" HorizontalAlignment="Left" Height="26" Margin="545,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166"/>
+                <Separator HorizontalAlignment="Left" Height="29" Margin="10,193,0,0" VerticalAlignment="Top" Width="1462"/>
+            </Grid>
+        </TabItem>
+    </TabControl>
 
 </Window>
