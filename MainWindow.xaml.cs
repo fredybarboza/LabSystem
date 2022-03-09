@@ -54,12 +54,12 @@ namespace LaboratorioBogado
 
 
         
-            fechaPedidosTextBox.Text = DateTime.Now.ToString("dd-MM-yyyy");
+            fechaPedidosLabel.Content = DateTime.Now.ToString("dd-MM-yyyy");
 
-            
 
-            
 
+
+            searchImage.Opacity = 0.3;
             
 
             
@@ -195,10 +195,10 @@ namespace LaboratorioBogado
 
         private void clearDateHistorial()
         {
-            nombreHistorialTextBox.Text = "";
-            apellidoHistorialTextBox.Text = "";
-            fechaNacHistorialTextBox.Text = "";
-            edadHistorialTextBox.Text = "";
+            nombreLabel.Content = "";
+            apellidoLabel.Content = "";
+            fechaNacLabel.Content = "";
+            edadLabel.Content = "";
         }
 
         private void visibilityHistorialHemograma(bool a)
@@ -229,7 +229,6 @@ namespace LaboratorioBogado
                 {
                     visibilityHistorialHemograma(true);
 
-                
                     Hemograma h = new Hemograma();
                     h.Id = reade.GetValue(0).ToString();
                     h.Hemoglobina = reade.GetValue(1).ToString();
@@ -255,17 +254,19 @@ namespace LaboratorioBogado
         private void ButtonBuscarHistorial_Click(object sender, RoutedEventArgs e)
         {
             visibilityHistorialHemograma(false);
+            
 
             clearDateHistorial();
 
             int n = 0;
-            MySqlDataReader reade = conDB.ListSql("select nombre, apellido, fecha_nacimiento, edad from pacientes where ci=" + ciHistorialTextBox.Text);
+            MySqlDataReader reade = conDB.ListSql("select ci, nombre, apellido, fecha_nacimiento, edad from pacientes where ci=" + ciHistorialTextBox.Text);
             while (reade.Read())
             {
-                nombreHistorialTextBox.Text = reade.GetValue(0).ToString();
-                apellidoHistorialTextBox.Text = reade.GetValue(1).ToString();
-                fechaNacHistorialTextBox.Text = reade.GetValue(2).ToString();
-                edadHistorialTextBox.Text = reade.GetValue(3).ToString();
+                ciLabel.Content = reade.GetValue(0).ToString();
+                nombreLabel.Content = reade.GetValue(1).ToString();
+                apellidoLabel.Content = reade.GetValue(2).ToString();
+                fechaNacLabel.Content = reade.GetValue(3).ToString();
+                edadLabel.Content = reade.GetValue(4).ToString();
                 n = 1;
             }
 
@@ -285,10 +286,12 @@ namespace LaboratorioBogado
             if (ciHistorialTextBox.Text == "")
             {
                 buttonBuscarHistorial.IsEnabled = false;
+                searchImage.Opacity = 0.3;
             }
             else
             {
                 buttonBuscarHistorial.IsEnabled = true;
+                searchImage.Opacity = 1.0;
             }
         }
 
@@ -378,15 +381,15 @@ namespace LaboratorioBogado
                 if (filtrarEstudioComboBox.SelectedValue.ToString() != "0") {  codigo = codigo + 2;}
             }
 
-            if (filtrarFechaDatePecker.SelectedDate!=null){ codigo = codigo + 3; fechaPedidosTextBox.Text = Convert.ToDateTime(filtrarFechaDatePecker.SelectedDate).ToString("dd-MM-yyyy"); }
+            if (filtrarFechaDatePecker.SelectedDate!=null){ codigo = codigo + 3; fechaPedidosLabel.Content = Convert.ToDateTime(filtrarFechaDatePecker.SelectedDate).ToString("dd-MM-yyyy"); }
 
             switch (codigo)
             {
                 case 0: MessageBox.Show("SELECCIONE ALGUN PARAMETRO DE FILTRO"); break;
-                case 7: filterServicios(fechaPedidosTextBox.Text); break;
-                case 2: filterEstudios(fechaPedidosTextBox.Text); break;
+                case 7: filterServicios(fechaPedidosLabel.Content.ToString()); break;
+                case 2: filterEstudios(fechaPedidosLabel.Content.ToString()); break;
                 case 3: filterFecha(Convert.ToDateTime(filtrarFechaDatePecker.SelectedDate).ToString("dd-MM-yyyy")); break;
-                case 9: filterServicioEstudio(fechaPedidosTextBox.Text); break;
+                case 9: filterServicioEstudio(fechaPedidosLabel.Content.ToString()); break;
                 case 10: filterServicios(Convert.ToDateTime(filtrarFechaDatePecker.SelectedDate).ToString("dd-MM-yyyy")); break;
                 case 5: filterEstudios(Convert.ToDateTime(filtrarFechaDatePecker.SelectedDate).ToString("dd-MM-yyyy")); break;
                 case 12: filterServicioEstudio(Convert.ToDateTime(filtrarFechaDatePecker.SelectedDate).ToString("dd-MM-yyyy")); break;
@@ -475,7 +478,7 @@ namespace LaboratorioBogado
             filtrarEstudioComboBox.SelectedValue = null;
             filtrarServicioComboBox.SelectedValue = null;
             filtrarFechaDatePecker.SelectedDate = null;
-            fechaPedidosTextBox.Text = DateTime.Now.ToString("dd-MM-yyyy");
+            fechaPedidosLabel.Content = DateTime.Now.ToString("dd-MM-yyyy");
             getPedidos();
         }
 
@@ -516,9 +519,24 @@ namespace LaboratorioBogado
             pp.ShowDialog();
         }
 
-        
+        private void HistorialButton_Click(object sender, RoutedEventArgs e)
+        {
+            historialTabItem.IsSelected = true;
+        }
 
-        
+        private void InicioButton_Click(object sender, RoutedEventArgs e)
+        {
+            inicioTabItem.IsSelected = true;
+        }
+
+        private void Inicio2Button_Click(object sender, RoutedEventArgs e)
+        {
+            inicioTabItem.IsSelected = true;
+        }
+
+
+
+
 
 
 
