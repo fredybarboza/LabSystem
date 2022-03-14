@@ -21,7 +21,7 @@ namespace LaboratorioBogado.Utils
             csb.Server = "LocalHost";
             csb.Database = "laboratoriobogado";
             csb.UserID = "root";
-            csb.Password = "5128575282828";
+            csb.Password = "samucabrera9990";
             csb.Pooling = false;
         }
 

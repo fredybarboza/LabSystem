@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/flecha.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/cerraruser.png")]
 
 

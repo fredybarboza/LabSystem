@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\user\Desktop\LaboratorioBogado\obj\Debug\
+C:\Users\samu\Desktop\Samu\UNI\LaboratorioBogado\LabSystem\obj\Debug\
 LaboratorioBogado
 none
 false
 DEBUG;TRACE
-C:\Users\user\Desktop\LaboratorioBogado\App.xaml
+C:\Users\samu\Desktop\Samu\UNI\LaboratorioBogado\LabSystem\App.xaml
 7-70247648
 
-20651744821
-141497496347
+20-1514396422
+14-916952514
 CargarPage.xaml;DetallePage.xaml;Estudios\PacientePage.xaml;Estudios\PedidosPage.xaml;Estudios\Succes.xaml;ImprimirPage.xaml;MainWindow.xaml;
 
-False
+True
 

@@ -5,27 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LaboratorioBogado.Estudios"
         mc:Ignorable="d"
-        Title="PacientePage" Height="491" Width="500">
-    <Grid Background="#FFECEAEA">
-        <Label Content="REGISTRO DE PACIENTES" HorizontalAlignment="Left" Margin="111,10,0,0" VerticalAlignment="Top" FontSize="24"/>
-        <Label x:Name="ciLabel" Content="N° C.I" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="-3.179,0.097"/>
-        <TextBox x:Name="ciTextBox" HorizontalAlignment="Left" Height="40" Margin="202,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" FontSize="16"/>
-        <Separator HorizontalAlignment="Left" Height="20" Margin="0,45,0,0" VerticalAlignment="Top" Width="492"/>
-        <Label x:Name="nombreLabel" Content="NOMBRE" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <TextBox x:Name="nombreTextBox" HorizontalAlignment="Left" Height="40" Margin="202,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" FontSize="16"/>
-        <Label x:Name="apellidoLabel" Content="APELLIDO" HorizontalAlignment="Left" Margin="10,206,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="4.675,0.161"/>
-        <TextBox x:Name="apellidoTextBox" HorizontalAlignment="Left" Height="40" Margin="202,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" FontSize="16"/>
-        <Label x:Name="fechaNacLabel" Content="FECHA DE NACIMIENTO" HorizontalAlignment="Left" Margin="10,259,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <DatePicker x:Name="fechaNacDatePicker" HorizontalAlignment="Left" Margin="202,259,0,0" VerticalAlignment="Top" Width="265"/>
-        <Label x:Name="edadLabel" Content="EDAD" HorizontalAlignment="Left" Margin="10,313,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <TextBox x:Name="edadTextBox" HorizontalAlignment="Left" Height="31" Margin="202,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="147"/>
-        <Label x:Name="sexoLabel" Content="SEXO" HorizontalAlignment="Left" Margin="10,359,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <RadioButton x:Name="femeninoRadioButton" Content="FEMENINO" HorizontalAlignment="Left" Margin="202,365,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.615,0.933" FontWeight="Bold" FontSize="16" Height="21"/>
-        <RadioButton x:Name="masculinoRadioButton" Content="MASCULINO" HorizontalAlignment="Left" Margin="332,365,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-        <Grid HorizontalAlignment="Left" Height="65" Margin="0,395,0,0" VerticalAlignment="Top" Width="492" Background="#FFC3C0C0">
-            <Button Content="GUARDAR" HorizontalAlignment="Left" Margin="374,13,0,0" VerticalAlignment="Top" Width="94" FontSize="16" Height="30" Click="Button_Click"/>
-            <Button Content="CANCELAR" HorizontalAlignment="Left" Margin="274,13,0,0" VerticalAlignment="Top" Width="86" Height="30" FontSize="16"/>
+        Title="PacientePage" Height="491" Width="500" WindowStartupLocation="CenterScreen" Background="Transparent" WindowStyle="None"  AllowsTransparency="True">
+    <Border Background="#0d47a1" BorderBrush="Transparent" CornerRadius="8">
+        <Grid Background="Transparent">
+            <Label Content="REGISTRO DE PACIENTES" HorizontalAlignment="Left" Margin="124,18,0,0" VerticalAlignment="Top" FontSize="20" Foreground="#f2f2f2" FontWeight="Medium"/>
+            <Label x:Name="ciLabel" Content="N° C.I" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top" FontSize="14" RenderTransformOrigin="-3.179,0.097" Foreground="#f2f2f2" FontWeight="Medium"/>
+            <TextBox x:Name="ciTextBox" HorizontalAlignment="Left" Height="40" Margin="202,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" FontSize="14" Foreground="#002171" FontWeight="Regular" BorderBrush="#002171"/>
+            <Separator HorizontalAlignment="Left" Height="20" Margin="0,45,0,0" VerticalAlignment="Top" Width="492" Background="#f2f2f2"/>
+            <Label x:Name="nombreLabel" Content="NOMBRE" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#f2f2f2" FontWeight="Medium"/>
+            <TextBox x:Name="nombreTextBox" HorizontalAlignment="Left" Height="40" Margin="202,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" FontSize="14" Foreground="#002171" FontWeight="Regular" BorderBrush="#002171"/>
+            <Label x:Name="apellidoLabel" Content="APELLIDO" HorizontalAlignment="Left" Margin="10,206,0,0" VerticalAlignment="Top" FontSize="14" RenderTransformOrigin="4.675,0.161" Foreground="#f2f2f2" FontWeight="Medium"/>
+            <TextBox x:Name="apellidoTextBox" HorizontalAlignment="Left" Height="40" Margin="202,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265" FontSize="14" Foreground="#002171" FontWeight="Regular" BorderBrush="#002171"/>
+            <Label x:Name="fechaNacLabel" Content="FECHA DE NACIMIENTO" HorizontalAlignment="Left" Margin="10,259,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#f2f2f2" FontWeight="Medium"/>
+            <DatePicker x:Name="fechaNacDatePicker" HorizontalAlignment="Left" Margin="202,259,0,0" VerticalAlignment="Top" Width="265" Foreground="#002171" FontWeight="Regular" BorderBrush="#002171"/>
+            <Label x:Name="edadLabel" Content="EDAD" HorizontalAlignment="Left" Margin="10,313,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#f2f2f2" FontWeight="Medium"/>
+            <TextBox x:Name="edadTextBox" HorizontalAlignment="Left" Height="31" Margin="202,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="147" Foreground="#002171" FontWeight="Regular" BorderBrush="#002171"/>
+            <Label x:Name="sexoLabel" Content="SEXO" HorizontalAlignment="Left" Margin="10,359,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#f2f2f2" FontWeight="Medium"/>
+            <RadioButton x:Name="femeninoRadioButton" Content="FEMENINO" HorizontalAlignment="Left" Margin="202,365,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.615,0.933" FontWeight="Bold" FontSize="14" Height="21" Foreground="#f2f2f2"/>
+            <RadioButton x:Name="masculinoRadioButton" Content="MASCULINO" HorizontalAlignment="Left" Margin="332,365,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Foreground="#f2f2f2"/>
+            <Grid HorizontalAlignment="Left" Height="60" Margin="0,412,0,0" VerticalAlignment="Top" Width="500" Background="#e1f5fe">
+                <Button Content="Guardar" HorizontalAlignment="Left" Margin="287,20,0,0" VerticalAlignment="Top" Width="94" FontSize="14" Height="30" Click="Button_Click"  Foreground="#002171" FontWeight="Bold" Background="#0288d1" BorderBrush="#f2f2f2">
+                    <Button.BitmapEffect>
+                        <DropShadowBitmapEffect Color="Black" Direction="330" Softness="15" ShadowDepth="5" Opacity="0.4" />
+                    </Button.BitmapEffect>
+                </Button>
+                <Button Content="Cancelar" HorizontalAlignment="Left" Margin="161,20,0,0" VerticalAlignment="Top" Width="86" Height="30" FontSize="15" Foreground="#002171" FontWeight="Bold" Background="#0288d1" BorderBrush="#f2f2f2">
+                    <Button.BitmapEffect>
+                        <DropShadowBitmapEffect Color="Black" Direction="330" Softness="15" ShadowDepth="5" Opacity="0.4" />
+                    </Button.BitmapEffect>
+                </Button>
+            </Grid>
+            <Button x:Name="btnCerrar" Background="Transparent" HorizontalAlignment="Left" Margin="459,10,0,0" VerticalAlignment="Top" Width="25" BorderBrush="Transparent" Click="btnCerrar_Click">
+                <Image Source="/Image/cerrarUser.png"/>
+            </Button>
         </Grid>
-
-    </Grid>
+    </Border>
 </Window>

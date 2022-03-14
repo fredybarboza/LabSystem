@@ -81,5 +81,10 @@ namespace LaboratorioBogado.Estudios
         {
             guardarPaciente();
         }
+
+        private void btnCerrar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

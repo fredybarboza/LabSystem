@@ -149,19 +149,7 @@
     <Resource Include="Image\bien.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image\user.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Image\pedido.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Image\estudios.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Image\historial.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Image\plus.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image\userplus.png" />
@@ -174,6 +162,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image\flecha.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\estudios1.png" />
+    <Resource Include="Image\historial2.png" />
+    <Resource Include="Image\plus2.png" />
+    <Resource Include="Image\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\cerrarUser.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
